@@ -24,7 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //导航栏
     [self navigationConfiguration];
+    //界面设置
     [self dataInitialize];
     
     // Do any additional setup after loading the view.
