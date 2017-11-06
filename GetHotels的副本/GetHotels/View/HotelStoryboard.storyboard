@@ -279,11 +279,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="areaLabel" destination="bWc-Fd-wsG" id="e7m-UE-lJC"/>
-                        <outlet property="describeLabel" destination="291-O0-wFD" id="isI-L8-MG5"/>
-                        <outlet property="nameLabel" destination="5KN-np-UPB" id="rA1-NK-xCX"/>
-                        <outlet property="priceLabel" destination="0Ow-AJ-q76" id="CeG-nd-DYM"/>
-                        <outlet property="roomImageView" destination="Sdq-mE-VQg" id="hSB-sn-8Bi"/>
                         <segue destination="MP5-FK-zbj" kind="show" id="zGn-o5-SWZ"/>
                     </connections>
                 </tableViewController>

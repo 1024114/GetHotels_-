@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //自定义一个可变数组
 @property (strong, nonatomic) NSMutableArray *array;
+@property (strong, nonatomic) NSMutableArray *offerarr;
+@property (strong, nonatomic) NSMutableArray *cantOfferarr;
 
 @end
 
