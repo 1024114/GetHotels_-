@@ -28,29 +28,10 @@
     [self navigationConfiguration];
     //界面设置
     [self dataInitialize];
+    [self segmentedControlset];
+    
     
     // Do any additional setup after loading the view.
-    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-    // Tying up the segmented control to a scroll view
-    self.segmentedControl4 = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 60, viewWidth, 50)];
-    self.segmentedControl4.sectionTitles = @[@"可报价", @"已过期"];
-    self.segmentedControl4.selectedSegmentIndex = 1;
-    //颜色
-    self.segmentedControl4.backgroundColor = [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
-    self.segmentedControl4.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor groupTableViewBackgroundColor]};
-    self.segmentedControl4.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    self.segmentedControl4.selectionIndicatorColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
-    self.segmentedControl4.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    self.segmentedControl4.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
-    self.segmentedControl4.tag = 3;
-    
-    __weak typeof(self) weakSelf = self;
-    [self.segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
-        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
-    }];
-    
-    [self.view addSubview:self.segmentedControl4];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +67,30 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     //自定义返回按钮
     //self.navigationController.navigationItem.leftBarButtonItem = ;
+}
+
+
+-(void)segmentedControlset{
+    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    // Tying up the segmented control to a scroll view
+    self.segmentedControl4 = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 60, viewWidth, 50)];
+    self.segmentedControl4.sectionTitles = @[@"可报价", @"已过期"];
+    self.segmentedControl4.selectedSegmentIndex = 1;
+    //颜色
+    self.segmentedControl4.backgroundColor = [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
+    self.segmentedControl4.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor groupTableViewBackgroundColor]};
+    self.segmentedControl4.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    self.segmentedControl4.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+    self.segmentedControl4.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    self.segmentedControl4.tag = 3;
+    
+    __weak typeof(self) weakSelf = self;
+    [self.segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
+        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
+    }];
+    
+    [self.view addSubview:self.segmentedControl4];
+    
 }
 
 #pragma mark - TableView

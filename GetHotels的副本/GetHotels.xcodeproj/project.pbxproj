@@ -325,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				B2E48A521FAFF85700725555 /* Air */,
-				B2E48A5B1FAFF85700725555 /* New Group */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,13 +342,6 @@
 				B2E48A5A1FAFF85700725555 /* CantOfferTableViewController.m */,
 			);
 			path = Air;
-			sourceTree = "<group>";
-		};
-		B2E48A5B1FAFF85700725555 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		B2E48A5C1FAFF85700725555 /* View */ = {
