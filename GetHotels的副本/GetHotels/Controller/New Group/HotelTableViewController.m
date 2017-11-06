@@ -9,11 +9,6 @@
 #import "HotelTableViewController.h"
 
 @interface HotelTableViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
 
 @end
 
