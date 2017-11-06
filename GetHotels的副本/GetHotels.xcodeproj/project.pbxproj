@@ -10,20 +10,14 @@
 		8415B0481FB036250081B393 /* HotelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8415B0471FB036250081B393 /* HotelStoryboard.storyboard */; };
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
-		A9F2880F98E3BC418C7A295B /* libPods-GetHotels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */; };
->>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D932E1FA80AC3008F6715 /* AppDelegate.m */; };
 		B26D93401FA80AC3008F6715 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D933F1FA80AC3008F6715 /* main.m */; };
 		B26D934A1FA80AC4008F6715 /* GetHotelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93491FA80AC4008F6715 /* GetHotelsTests.m */; };
 		B26D93551FA80AC4008F6715 /* GetHotelsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93541FA80AC4008F6715 /* GetHotelsUITests.m */; };
 		B2D8B6B91FB04354003A2208 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8B6B81FB04354003A2208 /* CityTableViewController.m */; };
 		B2D8B6BB1FB049FA003A2208 /* Air.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D8B6BA1FB049FA003A2208 /* Air.storyboard */; };
+		B2D9F1811FB0525A009FB5CF /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D9F1801FB0525A009FB5CF /* TabbarViewController.m */; };
 		B2E48A661FAFF85800725555 /* GetHotels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2E48A241FAFF85700725555 /* GetHotels.xcdatamodeld */; };
 		B2E48A671FAFF85800725555 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E48A271FAFF85700725555 /* Order.m */; };
 		B2E48A711FAFF85800725555 /* AppAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E48A401FAFF85700725555 /* AppAPIClient.m */; };
@@ -88,15 +82,8 @@
 		8415B04B1FB037450081B393 /* HotelTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewController.m; sourceTree = "<group>"; };
 		8415B0501FB037A20081B393 /* PostedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostedViewController.h; sourceTree = "<group>"; };
 		8415B0511FB037A20081B393 /* PostedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostedViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		8415B0531FB0402C0081B393 /* HotelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
 		8415B0541FB0402C0081B393 /* HotelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
-		AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GetHotels.a"; sourceTree = BUILT_PRODUCTS_DIR; };
->>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		B26D932A1FA80AC3008F6715 /* GetHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26D932D1FA80AC3008F6715 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B26D932E1FA80AC3008F6715 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -115,6 +102,8 @@
 		B2D8B6B71FB04354003A2208 /* CityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		B2D8B6B81FB04354003A2208 /* CityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		B2D8B6BA1FB049FA003A2208 /* Air.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Air.storyboard; sourceTree = "<group>"; };
+		B2D9F17F1FB0525A009FB5CF /* TabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarViewController.h; sourceTree = "<group>"; };
+		B2D9F1801FB0525A009FB5CF /* TabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabbarViewController.m; sourceTree = "<group>"; };
 		B2E48A111FAFF2C700725555 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		B2E48A131FAFF2D500725555 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B2E48A151FAFF49100725555 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -358,6 +347,8 @@
 			children = (
 				8415B0491FB037240081B393 /* Hotel */,
 				B2E48A521FAFF85700725555 /* Air */,
+				B2D9F17F1FB0525A009FB5CF /* TabbarViewController.h */,
+				B2D9F1801FB0525A009FB5CF /* TabbarViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -668,6 +659,7 @@
 				8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */,
 				B2E48A711FAFF85800725555 /* AppAPIClient.m in Sources */,
 				B2E48A741FAFF85800725555 /* NSDate+Utility.m in Sources */,
+				B2D9F1811FB0525A009FB5CF /* TabbarViewController.m in Sources */,
 				B2E48AC41FAFFA8400725555 /* DataSigner.m in Sources */,
 				B2E48A671FAFF85800725555 /* Order.m in Sources */,
 				B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */,
