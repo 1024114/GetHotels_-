@@ -31,6 +31,9 @@
                                     <constraint firstAttribute="height" constant="40" id="dCF-Nh-8KZ"/>
                                 </constraints>
                                 <state key="normal" title="请选择酒店"/>
+                                <connections>
+                                    <action selector="selectAction:forEvent:" destination="MP5-FK-zbj" eventType="touchUpInside" id="Lgx-rF-diY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房型描述" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtY-6G-hrl">
                                 <rect key="frame" x="15" y="197" width="77.5" height="23"/>
@@ -174,6 +177,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E29-7H-XC5"/>
                     </view>
+                    <connections>
+                        <outlet property="areaTextField" destination="udq-Uw-k9P" id="Vqi-rz-yfS"/>
+                        <outlet property="bedTextField" destination="5Pu-xB-fde" id="HJE-KU-c71"/>
+                        <outlet property="moringTextField" destination="Q65-cu-d7S" id="JB6-7v-Ufz"/>
+                        <outlet property="priceTextField" destination="ENe-IW-gRN" id="WVC-XQ-XeB"/>
+                        <outlet property="roomImageView" destination="tFC-EG-Qrw" id="fUv-Zo-3f6"/>
+                        <outlet property="roomNameTextField" destination="UVM-e2-p62" id="DnI-AY-eVq"/>
+                        <outlet property="selectBtn" destination="5bB-7s-g5G" id="VnX-6J-GMS"/>
+                        <outlet property="weekendsTextField" destination="UaD-99-yaj" id="U7p-KM-9Ja"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhh-Xh-YQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -266,6 +279,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="areaLabel" destination="bWc-Fd-wsG" id="e7m-UE-lJC"/>
+                        <outlet property="describeLabel" destination="291-O0-wFD" id="isI-L8-MG5"/>
+                        <outlet property="nameLabel" destination="5KN-np-UPB" id="rA1-NK-xCX"/>
+                        <outlet property="priceLabel" destination="0Ow-AJ-q76" id="CeG-nd-DYM"/>
+                        <outlet property="roomImageView" destination="Sdq-mE-VQg" id="hSB-sn-8Bi"/>
                         <segue destination="MP5-FK-zbj" kind="show" id="zGn-o5-SWZ"/>
                     </connections>
                 </tableViewController>
