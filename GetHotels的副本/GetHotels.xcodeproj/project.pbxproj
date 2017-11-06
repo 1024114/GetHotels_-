@@ -10,6 +10,11 @@
 		8415B0481FB036250081B393 /* HotelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8415B0471FB036250081B393 /* HotelStoryboard.storyboard */; };
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
+<<<<<<< HEAD
+=======
+		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
+		A9F2880F98E3BC418C7A295B /* libPods-GetHotels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */; };
+>>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D932E1FA80AC3008F6715 /* AppDelegate.m */; };
 		B26D93401FA80AC3008F6715 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D933F1FA80AC3008F6715 /* main.m */; };
 		B26D934A1FA80AC4008F6715 /* GetHotelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93491FA80AC4008F6715 /* GetHotelsTests.m */; };
@@ -80,6 +85,12 @@
 		8415B04B1FB037450081B393 /* HotelTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewController.m; sourceTree = "<group>"; };
 		8415B0501FB037A20081B393 /* PostedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostedViewController.h; sourceTree = "<group>"; };
 		8415B0511FB037A20081B393 /* PostedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostedViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		8415B0531FB0402C0081B393 /* HotelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
+		8415B0541FB0402C0081B393 /* HotelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
+		AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GetHotels.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		B26D932A1FA80AC3008F6715 /* GetHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26D932D1FA80AC3008F6715 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B26D932E1FA80AC3008F6715 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -206,6 +217,8 @@
 				8415B04B1FB037450081B393 /* HotelTableViewController.m */,
 				8415B0501FB037A20081B393 /* PostedViewController.h */,
 				8415B0511FB037A20081B393 /* PostedViewController.m */,
+				8415B0531FB0402C0081B393 /* HotelTableViewCell.h */,
+				8415B0541FB0402C0081B393 /* HotelTableViewCell.m */,
 			);
 			name = Hotel;
 			path = "New Group";
@@ -646,6 +659,7 @@
 				B2E48AC61FAFFA8400725555 /* MD5DataSigner.m in Sources */,
 				B2E48A781FAFF85800725555 /* StorageMgr.m in Sources */,
 				B2E48A721FAFF85800725555 /* ErrorHandler.m in Sources */,
+				8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */,
 				B2E48A711FAFF85800725555 /* AppAPIClient.m in Sources */,
 				B2E48A741FAFF85800725555 /* NSDate+Utility.m in Sources */,
 				B2E48AC41FAFFA8400725555 /* DataSigner.m in Sources */,
