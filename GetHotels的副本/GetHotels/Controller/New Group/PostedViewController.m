@@ -9,6 +9,16 @@
 #import "PostedViewController.h"
 
 @interface PostedViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+@property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *moringTextField;
+@property (weak, nonatomic) IBOutlet UITextField *bedTextField;
+@property (weak, nonatomic) IBOutlet UITextField *areaTextField;
+@property (weak, nonatomic) IBOutlet UITextField *priceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *weekendsTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
+
+- (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event;
 
 @end
 
@@ -34,4 +44,6 @@
 }
 */
 
+- (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
+}
 @end

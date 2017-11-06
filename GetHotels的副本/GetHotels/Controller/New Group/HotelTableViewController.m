@@ -9,6 +9,11 @@
 #import "HotelTableViewController.h"
 
 @interface HotelTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
 
 @end
 
@@ -32,12 +37,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
+
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
+
     return 0;
 }
 
