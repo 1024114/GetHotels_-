@@ -11,7 +11,10 @@
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
 		A9F2880F98E3BC418C7A295B /* libPods-GetHotels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */; };
 >>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
@@ -86,7 +89,10 @@
 		8415B0501FB037A20081B393 /* PostedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostedViewController.h; sourceTree = "<group>"; };
 		8415B0511FB037A20081B393 /* PostedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostedViewController.m; sourceTree = "<group>"; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> fe7a889195671029acf7afcabb9cdf2e82a16bc9
 		8415B0531FB0402C0081B393 /* HotelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
 		8415B0541FB0402C0081B393 /* HotelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
 		AC764E2D0B3FE5C953A0EA2B /* libPods-GetHotels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GetHotels.a"; sourceTree = BUILT_PRODUCTS_DIR; };
