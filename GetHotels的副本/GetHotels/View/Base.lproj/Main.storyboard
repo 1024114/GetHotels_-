@@ -242,6 +242,9 @@
                                     <constraint firstItem="Q0U-nX-jBb" firstAttribute="leading" secondItem="xm6-Qe-30b" secondAttribute="trailing" id="wgW-Vf-1hG"/>
                                     <constraint firstItem="Q0U-nX-jBb" firstAttribute="top" secondItem="xm6-Qe-30b" secondAttribute="top" id="zpn-ZF-hlE"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rWF-77-cRm"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -266,7 +269,6 @@
         <!--View Controller-->
         <scene sceneID="sHL-L2-Uyc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vxa-8c-8Ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Efu-Yn-3nk" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X7O-8l-eFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -488,13 +490,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="航空公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-gA-JT4">
-                                                    <rect key="frame" x="24" y="45" width="69.5" height="21"/>
+                                                    <rect key="frame" x="24" y="45" width="70" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="航班" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhl-EY-g2A">
-                                                    <rect key="frame" x="98.5" y="45" width="35" height="21"/>
+                                                    <rect key="frame" x="99" y="45" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -512,13 +514,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起飞日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7y7-4E-gPe">
-                                                    <rect key="frame" x="24" y="74" width="69.5" height="21"/>
+                                                    <rect key="frame" x="24" y="74" width="70" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="舱位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-Iu-mbl">
-                                                    <rect key="frame" x="138.5" y="45" width="35" height="21"/>
+                                                    <rect key="frame" x="139" y="45" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -530,15 +532,18 @@
                                                         <constraint firstAttribute="height" constant="1" id="DxL-zc-rBW"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QB1-4x-IMl">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QB1-4x-IMl">
                                                     <rect key="frame" x="102" y="84" width="60" height="1"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="4tq-Sq-EbC"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="到达日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-Au-mnZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="到达日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-Au-mnZ">
                                                     <rect key="frame" x="171" y="74" width="78" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="78" id="yip-iy-Qs0"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -553,6 +558,7 @@
                                                 <constraint firstItem="h6u-V5-h6c" firstAttribute="top" secondItem="FV1-gm-5IA" secondAttribute="top" id="BPX-je-Pst"/>
                                                 <constraint firstItem="FV1-gm-5IA" firstAttribute="leading" secondItem="M8F-b6-bbu" secondAttribute="leading" constant="10" id="CWd-tG-tYT"/>
                                                 <constraint firstItem="Nft-gA-JT4" firstAttribute="leading" secondItem="5fD-n1-dDf" secondAttribute="trailing" constant="5" id="DZK-79-wgB"/>
+                                                <constraint firstItem="C2h-Au-mnZ" firstAttribute="leading" secondItem="7y7-4E-gPe" secondAttribute="trailing" constant="77" id="FeT-kn-FRH"/>
                                                 <constraint firstItem="Nft-gA-JT4" firstAttribute="centerY" secondItem="5fD-n1-dDf" secondAttribute="centerY" id="HZn-q1-uxm"/>
                                                 <constraint firstItem="FN9-iN-LY6" firstAttribute="top" secondItem="5fD-n1-dDf" secondAttribute="bottom" constant="20" id="IND-lN-21z"/>
                                                 <constraint firstItem="FN9-iN-LY6" firstAttribute="leading" secondItem="FV1-gm-5IA" secondAttribute="leading" id="K4k-Rw-bR1"/>
@@ -564,6 +570,7 @@
                                                 <constraint firstItem="mhl-EY-g2A" firstAttribute="centerY" secondItem="5fD-n1-dDf" secondAttribute="centerY" id="XRj-Fp-43a"/>
                                                 <constraint firstItem="FV1-gm-5IA" firstAttribute="top" secondItem="M8F-b6-bbu" secondAttribute="top" constant="10" id="XdD-AL-sqN"/>
                                                 <constraint firstAttribute="trailing" secondItem="h6u-V5-h6c" secondAttribute="trailing" constant="15" id="ZjD-hg-hUN"/>
+                                                <constraint firstAttribute="trailing" secondItem="QB1-4x-IMl" secondAttribute="trailing" constant="213" id="aWf-w5-uE3"/>
                                                 <constraint firstItem="UP7-dS-9ei" firstAttribute="top" secondItem="FV1-gm-5IA" secondAttribute="top" id="cug-FL-f97"/>
                                                 <constraint firstItem="D8x-2z-aQ3" firstAttribute="leading" secondItem="FV1-gm-5IA" secondAttribute="trailing" constant="50" id="eLu-Mu-3KI"/>
                                                 <constraint firstItem="C2h-Au-mnZ" firstAttribute="centerY" secondItem="7y7-4E-gPe" secondAttribute="centerY" id="h3Z-ZY-lcU"/>
@@ -576,6 +583,7 @@
                                                 <constraint firstItem="yc5-24-6wa" firstAttribute="centerY" secondItem="MQb-Qs-9Lt" secondAttribute="centerY" id="rlM-8z-YPb"/>
                                                 <constraint firstItem="bbL-az-T0m" firstAttribute="centerY" secondItem="FV1-gm-5IA" secondAttribute="centerY" constant="1" id="ums-oQ-XQe"/>
                                                 <constraint firstItem="QB1-4x-IMl" firstAttribute="centerY" secondItem="7y7-4E-gPe" secondAttribute="centerY" id="vU7-7H-Lqa"/>
+                                                <constraint firstItem="QB1-4x-IMl" firstAttribute="leading" secondItem="7y7-4E-gPe" secondAttribute="trailing" constant="8" symbolic="YES" id="xg4-V2-eM4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -656,6 +664,7 @@
                         <viewLayoutGuide key="safeArea" id="Eie-by-vd4"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vxa-8c-8Ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2368.8000000000002" y="-252.32383808095955"/>
         </scene>

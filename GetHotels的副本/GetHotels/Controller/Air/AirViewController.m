@@ -11,7 +11,14 @@
 #import "AirTableViewCell.h"
 
 
-@interface AirViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface AirViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
+    NSInteger offerFlag;
+    NSInteger cantOfferFlag;
+    NSInteger offerPageNum;
+    BOOL offerLast;
+    NSInteger cantOfferPageNum;
+    BOOL cantOfferLast;
+}
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
