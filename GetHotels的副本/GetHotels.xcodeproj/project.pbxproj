@@ -355,9 +355,9 @@
 		B2E48A5C1FAFF85700725555 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B2E48A601FAFF85700725555 /* Main.storyboard */,
 				B2E48A5D1FAFF85700725555 /* Assets.xcassets */,
 				B2E48A5E1FAFF85700725555 /* LaunchScreen.storyboard */,
-				B2E48A601FAFF85700725555 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
