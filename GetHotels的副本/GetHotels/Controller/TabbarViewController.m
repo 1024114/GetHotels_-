@@ -18,17 +18,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIViewController *nc = [Utilities getStoryboardInstance:@"Air" byIdentity:@"air"];
-<<<<<<< HEAD
     nc.tabBarItem.image = [[UIImage imageNamed:@"aviation"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     nc.tabBarItem.title = @"航空报价";
     UIViewController *nc1 = [Utilities getStoryboardInstance:@"HotelStoryboard" byIdentity:@"hotel"];
     nc1.tabBarItem.image = [[UIImage imageNamed:@"hotel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-=======
-    nc.tabBarItem.image = [[UIImage imageNamed:@"aviation"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    nc.tabBarItem.title = @"航空报价";
-    UIViewController *nc1 = [Utilities getStoryboardInstance:@"HotelStoryboard" byIdentity:@"hotel"];
-    nc1.tabBarItem.image = [[UIImage imageNamed:@"hotel"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
->>>>>>> 10b1ee4c06e4b04c4643829e588f4aa136e24f06
     nc1.tabBarItem.title = @"酒店发布";
     [self addChildViewController:nc];
     [self addChildViewController:nc1];

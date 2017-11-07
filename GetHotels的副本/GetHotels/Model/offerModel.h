@@ -10,8 +10,10 @@
 
 @interface offerModel : NSObject
 
+@property (nonatomic) NSInteger airID;//航空id
 @property(strong,nonatomic)NSString *date;//日期
-@property(strong,nonatomic)NSString *price;//价格
+@property(strong,nonatomic)NSString *lowPrice;//最低价格
+@property(strong,nonatomic)NSString *highPrice;//最高价格
 @property(strong,nonatomic)NSString *time;//时间
 @property(strong,nonatomic)NSString *space;//舱位
 @property(strong,nonatomic)NSString *start;//出发地

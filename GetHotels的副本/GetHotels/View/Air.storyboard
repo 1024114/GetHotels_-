@@ -317,10 +317,10 @@
             </objects>
             <point key="canvasLocation" x="2085.5999999999999" y="-374.66266866566718"/>
         </scene>
-        <!--View Controller-->
+        <!--Quote View Controller-->
         <scene sceneID="H3n-Ai-I2H">
             <objects>
-                <viewController id="9rd-jP-HfI" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="9rd-jP-HfI" customClass="QuoteViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yux-y1-o1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -451,7 +451,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xv-ee-5GL">
-                                <rect key="frame" x="145" y="186" width="46" height="1"/>
+                                <rect key="frame" x="145" y="186" width="30" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Cj4-29-fMQ"/>
@@ -710,7 +710,7 @@
                             <constraint firstItem="TpF-Az-ZWS" firstAttribute="bottom" secondItem="GKv-v1-1cC" secondAttribute="bottom" id="s6m-Us-q7c"/>
                             <constraint firstItem="fGu-qb-8qY" firstAttribute="centerX" secondItem="Tba-Eo-2yE" secondAttribute="centerX" id="sCO-NQ-9fu"/>
                             <constraint firstItem="Dja-jX-cyP" firstAttribute="trailing" secondItem="Pfi-Fb-Ypq" secondAttribute="trailing" id="uYF-aW-aa7"/>
-                            <constraint firstAttribute="trailing" secondItem="1xv-ee-5GL" secondAttribute="trailing" constant="184" id="uc1-OX-UG7"/>
+                            <constraint firstAttribute="trailing" secondItem="1xv-ee-5GL" secondAttribute="trailing" constant="200" id="uc1-OX-UG7"/>
                             <constraint firstItem="Dja-jX-cyP" firstAttribute="leading" secondItem="Pfi-Fb-Ypq" secondAttribute="leading" id="vdD-U7-sz3"/>
                             <constraint firstItem="GlU-r8-4Yv" firstAttribute="centerY" secondItem="NzT-bT-Tbc" secondAttribute="centerY" id="wO7-d9-v4b"/>
                             <constraint firstItem="SSs-FE-gJp" firstAttribute="top" secondItem="0nM-bT-YSK" secondAttribute="bottom" id="yZi-j6-wMI"/>
@@ -720,7 +720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFr-QM-Cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2988" y="-81"/>
+            <point key="canvasLocation" x="2865" y="-374"/>
         </scene>
         <!--City Table View Controller-->
         <scene sceneID="0g6-mV-lcs">
@@ -757,7 +757,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Zw-fr-UxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476" y="-251.42428785607197"/>
+            <point key="canvasLocation" x="3658" y="-255"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GVR-dB-dHZ">
