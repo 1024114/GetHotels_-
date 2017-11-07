@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSString *describe;//描述
 @property (strong, nonatomic) NSString *area;//面积
 @property (strong, nonatomic) NSString *price;//价格
-//图片
+@property (strong, nonatomic) NSString *image;//图片
 
 //声明一个自定义实例化方法
 - (instancetype) initWithDict: (NSDictionary *)dict;

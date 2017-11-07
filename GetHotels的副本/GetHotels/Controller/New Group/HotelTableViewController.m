@@ -8,7 +8,14 @@
 
 #import "HotelTableViewController.h"
 
-@interface HotelTableViewController ()<UITableViewDelegate>
+@interface HotelTableViewController ()<UITableViewDelegate>{
+    NSInteger page;
+    NSInteger prePage;
+    //表示总页数
+    NSInteger totalpage;
+    
+    BOOL firstVisit;
+}
 - (IBAction)postedBtn:(UIBarButtonItem *)sender;
 
 //声明一个可变数组array
@@ -56,6 +63,19 @@
     //self.navigationController.navigationItem.leftBarButtonItem = ;
 }
 
+#pragma mark - Request
+
+- (void)request{
+    //在这里开始真正的网络请求
+    NSDictionary *para = nil;
+    [RequestAPI requestURL:@"addHotel?business_id=1&hotel_name=1&hotel_type=1&price=1.0&room_imgs=1" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
+        
+    } failure:^(NSInteger statusCode, NSError *error) {
+        
+    }];
+}
+
+
 #pragma mark - Table view data source(关于细胞)
 
 //多少组
@@ -88,7 +108,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
 /*
 // Override to support conditional editing of the table view.

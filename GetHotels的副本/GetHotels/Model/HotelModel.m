@@ -16,7 +16,7 @@
     if (self) {
         //给属性赋值
         //通过Utilities里的nullAndNilCheck:replaceBy:这个方法来对数据就行非空检查
-        self.name = [Utilities nullAndNilCheck:dict[@"name"] replaceBy:@"未知酒店名"];
+        self.name = [Utilities nullAndNilCheck:dict[@"hotel_name"] replaceBy:@"未知酒店名"];
     }
     return self;
 }
