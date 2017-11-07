@@ -36,6 +36,7 @@
     //导航栏
     [self navigationConfiguration];
     //界面设置
+    [self uiLayout];
     [self dataInitialize];
     [self segmentedControlset];
     

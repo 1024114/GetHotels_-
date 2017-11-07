@@ -24,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self dataInitialize];
+    [self uiLayout];
+    [self hideTabBar];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -74,78 +77,6 @@
     self.navigationController.navigationItem.title = @"选择城市";
 }
 
-#pragma mark - Location
-//设置定位管理器的方法
--(void)locationConfig{
-    //初始化定位管理器
-    _locationMgr = [[CLLocationManager alloc] init];
-    //签协议
-    _locationMgr.delegate = self;
-    //设置更新位置的距离，当移动超过这个这个距离的时候就会更新位置，否则不会更新位置,kCLDistanceFilterNone表示不设置距离过滤，即随时更新位置
-    _locationMgr.distanceFilter = kCLDistanceFilterNone;
-    //定位的精确度,kCLLocationAccuracyBest最精确
-    _locationMgr.desiredAccuracy = kCLLocationAccuracyBest;
-}
-
-//判断用户授权
--(void)getUserLocation{
-    //判断用户如果没有选择定位功能
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-#ifdef __IPHONE_8_0
-        //判断_locationMgr是否对requestWhenInUseAuthorization（询问用户授权）响应
-        if ([_locationMgr respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            //询问用户是否开启定位功能
-            [_locationMgr performSelector:@selector(requestWhenInUseAuthorization)];
-        }
-#endif
-    }
-    //开始定位
-    [_locationMgr startUpdatingLocation];
-}
-
-//位置更新后调用
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation{
-    NSLog(@"new = %@",newLocation);
-    //将当前更新后的位置存在全局变量中
-    _location = newLocation;
-    if (firstVisit) {
-        //调用反向地理编码的方法
-        [self seachReGeocodeWithLacation];
-        firstVisit = NO;
-    }
-}
-
-//定位失败
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error{
-    //判断错误是否存在
-    if (error) {
-        //调用定位失败的处理方法
-        [self errorCheck:error];
-    }
-}
-
-//定位失败的处理
--(void)errorCheck:(NSError *)error{
-    switch ([error code]) {
-            //网络错误
-        case kCLErrorNetwork:
-            [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"NetWorkError",nil) andTitle:@"提示" onView:self onCompletion:^{}];
-            break;
-        case kCLErrorDenied:
-            [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"GPSDisabled",nil) andTitle:@"提示" onView:self onCompletion:^{}];
-            break;
-        case kCLErrorLocationUnknown:
-            [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"LocationUnknow",nil) andTitle:@"提示" onView:self onCompletion:^{}];
-            break;
-            
-        default:
-            [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"SystemError",nil) andTitle:@"提示" onView:self onCompletion:^{}];
-            break;
-    }
-}
 
 //地理编码
 -(void)seachReGeocodeWithLacation{
@@ -222,7 +153,7 @@
 }
 
 //选中行时调用
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消当前选中行的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //通过当前选中的组号拿到对应的组标题(键名)
@@ -237,7 +168,23 @@
     [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:NO];
     //返回上个页面
     [self.navigationController popViewControllerAnimated:YES];
+}*/
+
+#pragma mark -隐藏TabBar
+- (void)hideTabBar {
+    if (self.tabBarController.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    else
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
+    self.tabBarController.tabBar.hidden = YES;
+    
 }
+
 
 /*
 // Override to support conditional editing of the table view.
