@@ -211,7 +211,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒店名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KN-np-UPB">
                                             <rect key="frame" x="23" y="23" width="329" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.16078431369999999" green="0.48627450979999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.29567459229999998" green="0.54654091599999999" blue="0.96584600210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sdq-mE-VQg">
@@ -283,6 +283,9 @@
                     <navigationItem key="navigationItem" id="mgQ-cd-Efg">
                         <barButtonItem key="rightBarButtonItem" title="posted" image="check_out" id="jRb-85-xul">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="postedBtn:" destination="iu5-om-vpc" id="30I-5B-R2c"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

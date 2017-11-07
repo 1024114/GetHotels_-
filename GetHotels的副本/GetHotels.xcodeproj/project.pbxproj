@@ -11,6 +11,7 @@
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
 		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
+		84415E751FB14C6000C321FF /* HotelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84415E741FB14C6000C321FF /* HotelModel.m */; };
 		B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D932E1FA80AC3008F6715 /* AppDelegate.m */; };
 		B26D93401FA80AC3008F6715 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D933F1FA80AC3008F6715 /* main.m */; };
 		B26D934A1FA80AC4008F6715 /* GetHotelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93491FA80AC4008F6715 /* GetHotelsTests.m */; };
@@ -84,6 +85,8 @@
 		8415B0511FB037A20081B393 /* PostedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostedViewController.m; sourceTree = "<group>"; };
 		8415B0531FB0402C0081B393 /* HotelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
 		8415B0541FB0402C0081B393 /* HotelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
+		84415E731FB14C6000C321FF /* HotelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelModel.h; sourceTree = "<group>"; };
+		84415E741FB14C6000C321FF /* HotelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelModel.m; sourceTree = "<group>"; };
 		B26D932A1FA80AC3008F6715 /* GetHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26D932D1FA80AC3008F6715 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B26D932E1FA80AC3008F6715 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -212,8 +215,6 @@
 				8415B04B1FB037450081B393 /* HotelTableViewController.m */,
 				8415B0501FB037A20081B393 /* PostedViewController.h */,
 				8415B0511FB037A20081B393 /* PostedViewController.m */,
-				8415B0531FB0402C0081B393 /* HotelTableViewCell.h */,
-				8415B0541FB0402C0081B393 /* HotelTableViewCell.m */,
 			);
 			name = Hotel;
 			path = "New Group";
@@ -311,6 +312,8 @@
 				B2E48A241FAFF85700725555 /* GetHotels.xcdatamodeld */,
 				B2E48A261FAFF85700725555 /* Order.h */,
 				B2E48A271FAFF85700725555 /* Order.m */,
+				84415E731FB14C6000C321FF /* HotelModel.h */,
+				84415E741FB14C6000C321FF /* HotelModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -373,6 +376,8 @@
 		B2E48A5C1FAFF85700725555 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8415B0531FB0402C0081B393 /* HotelTableViewCell.h */,
+				8415B0541FB0402C0081B393 /* HotelTableViewCell.m */,
 				B2E48A601FAFF85700725555 /* Main.storyboard */,
 				B2E48A5D1FAFF85700725555 /* Assets.xcassets */,
 				B2E48A5E1FAFF85700725555 /* LaunchScreen.storyboard */,
@@ -649,6 +654,7 @@
 				B2E48A731FAFF85800725555 /* NSData+Base64.m in Sources */,
 				B26D93401FA80AC3008F6715 /* main.m in Sources */,
 				B2E48AC91FAFFA8400725555 /* RSADataSigner.m in Sources */,
+				84415E751FB14C6000C321FF /* HotelModel.m in Sources */,
 				B2E48A661FAFF85800725555 /* GetHotels.xcdatamodeld in Sources */,
 				B2E48A771FAFF85800725555 /* RequestAPI.m in Sources */,
 				B2E48AC31FAFFA8400725555 /* base64.m in Sources */,

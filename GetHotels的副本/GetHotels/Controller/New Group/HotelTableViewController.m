@@ -8,7 +8,11 @@
 
 #import "HotelTableViewController.h"
 
-@interface HotelTableViewController ()
+@interface HotelTableViewController ()<UITableViewDelegate>
+- (IBAction)postedBtn:(UIBarButtonItem *)sender;
+
+//声明一个可变数组array
+@property (strong, nonatomic) NSMutableArray *array;
 
 @end
 
@@ -22,6 +26,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self navigationConfiguration];
+    [self tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,27 +35,60 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+//设置导航栏的方法
+- (void)navigationConfiguration{
+    //设置导航栏标题颜色
+    //创建一个属性字典
+    NSDictionary *titleTextOption = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    //将上述的数字字典配置给导航栏的标题
+    [self.navigationController.navigationBar setTitleTextAttributes:titleTextOption];
+    //更改导航栏的标题
+    self.navigationItem.title = NSLocalizedString(@"我的酒店", nil);
+    //设置导航栏颜色（风格颜色：导航栏整体的背景色和状态栏整体的背景色）
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
+    //配置导航栏的毛玻璃效果 YES表示有  NO表示没有
+    [self.navigationController.navigationBar setTranslucent:YES];
+    //设置导航栏是否隐藏
+    self.navigationController.navigationBar.hidden = NO;
+    //配置导航栏上的item的风格颜色（如果是文字则文字变成白色，如果是图片则图片的透明部分变成白色）
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //自定义返回按钮
+    //self.navigationController.navigationItem.leftBarButtonItem = ;
+}
 
+#pragma mark - Table view data source(关于细胞)
+
+//多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
+//每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return 3;
 }
 
-/*
+//每行长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
+
     return cell;
 }
-*/
+
+//细胞的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 150.f;
+}
+
+//选中行时调用
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //取消当前选中行的选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -95,4 +134,6 @@
 }
 */
 
+- (IBAction)postedBtn:(UIBarButtonItem *)sender {
+}
 @end
