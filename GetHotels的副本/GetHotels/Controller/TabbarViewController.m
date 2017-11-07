@@ -19,8 +19,12 @@
     // Do any additional setup after loading the view.
     UIViewController *nc = [Utilities getStoryboardInstance:@"Air" byIdentity:@"air"];
     nc.tabBarItem.image = [[UIImage imageNamed:@"aviation"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    nc.tabBarItem.title = @"jkhkjhkj";
+    nc.tabBarItem.title = @"航空报价";
+    UIViewController *nc1 = [Utilities getStoryboardInstance:@"HotelStoryboard" byIdentity:@"hotel"];
+    nc1.tabBarItem.image = [[UIImage imageNamed:@"hotel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    nc1.tabBarItem.title = @"酒店发布";
     [self addChildViewController:nc];
+    [self addChildViewController:nc1];
 }
 
 - (void)didReceiveMemoryWarning {

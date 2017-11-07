@@ -11,6 +11,7 @@
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
 		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
+		B22AAC351FB13FC8002267E3 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = B22AAC341FB13FC8002267E3 /* Cities.plist */; };
 		B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D932E1FA80AC3008F6715 /* AppDelegate.m */; };
 		B26D93401FA80AC3008F6715 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D933F1FA80AC3008F6715 /* main.m */; };
 		B26D934A1FA80AC4008F6715 /* GetHotelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93491FA80AC4008F6715 /* GetHotelsTests.m */; };
@@ -84,6 +85,7 @@
 		8415B0511FB037A20081B393 /* PostedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostedViewController.m; sourceTree = "<group>"; };
 		8415B0531FB0402C0081B393 /* HotelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
 		8415B0541FB0402C0081B393 /* HotelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
+		B22AAC341FB13FC8002267E3 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 		B26D932A1FA80AC3008F6715 /* GetHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26D932D1FA80AC3008F6715 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B26D932E1FA80AC3008F6715 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		B26D932C1FA80AC3008F6715 /* GetHotels */ = {
 			isa = PBXGroup;
 			children = (
+				B22AAC341FB13FC8002267E3 /* Cities.plist */,
 				B2E48A621FAFF85800725555 /* 3rd */,
 				B2E48A211FAFF85700725555 /* Constant */,
 				B2E48A511FAFF85700725555 /* Controller */,
@@ -556,6 +559,7 @@
 				8415B0481FB036250081B393 /* HotelStoryboard.storyboard in Resources */,
 				B2E48A7F1FAFF85800725555 /* LaunchScreen.storyboard in Resources */,
 				B2D8B6BB1FB049FA003A2208 /* Air.storyboard in Resources */,
+				B22AAC351FB13FC8002267E3 /* Cities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

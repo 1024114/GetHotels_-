@@ -117,6 +117,7 @@
                                                     <outlet property="spaceLabel" destination="UIq-p1-vQ6" id="Wyc-Fw-15U"/>
                                                     <outlet property="startLabel" destination="5YA-Ef-pPV" id="iIt-VI-wJ0"/>
                                                     <outlet property="timeLabel" destination="FLK-rC-KwS" id="omM-q5-PIy"/>
+                                                    <segue destination="9rd-jP-HfI" kind="show" id="l8g-qV-FHq"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -160,7 +161,7 @@
                                                             <color key="textColor" red="1" green="0.17610187860000001" blue="0.1132525917" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plane" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-RX-T46">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="灰色飞机" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-RX-T46">
                                                             <rect key="frame" x="311.5" y="35" width="48.5" height="48.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="0Mc-RX-T46" secondAttribute="height" multiplier="1:1" id="ckF-SI-YDJ"/>
@@ -259,12 +260,11 @@
                     <navigationItem key="navigationItem" id="lq9-94-874"/>
                     <connections>
                         <outlet property="tableView" destination="BDP-mw-XWi" id="eKb-gT-rAi"/>
-                        <segue destination="9rd-jP-HfI" kind="show" id="t8S-Fc-guK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBy-x5-fSN" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="-252.32383808095955"/>
+            <point key="canvasLocation" x="1994" y="-250"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="H3n-Ai-I2H">
@@ -282,6 +282,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <segue destination="KUW-lW-DCu" kind="show" id="aLY-GY-DrD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择目的地" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TpF-Az-ZWS">
                                 <rect key="frame" x="134.5" y="74" width="75.5" height="38"/>
@@ -663,9 +666,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b4i-o5-KvH"/>
                     </view>
-                    <connections>
-                        <segue destination="KUW-lW-DCu" kind="show" id="iMf-Qd-Q1o"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFr-QM-Cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -680,7 +680,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="viy-vd-IUh" style="IBUITableViewCellStyleDefault" id="aIN-Ds-qeS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cityCell" textLabel="viy-vd-IUh" style="IBUITableViewCellStyleDefault" id="aIN-Ds-qeS">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aIN-Ds-qeS" id="hxn-43-0Th">
@@ -786,5 +786,6 @@ A
 </mutableData>
         </image>
         <image name="plane" width="82" height="82"/>
+        <image name="灰色飞机" width="82" height="82"/>
     </resources>
 </document>
