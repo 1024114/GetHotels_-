@@ -18,6 +18,8 @@
     BOOL offerLast;
     NSInteger cantOfferPageNum;
     BOOL cantOfferLast;
+    NSInteger type;
+    NSInteger offerPageSize;
 }
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
@@ -39,6 +41,7 @@
     [self uiLayout];
     [self dataInitialize];
     [self segmentedControlset];
+    [self request];
     
     
     // Do any additional setup after loading the view.
@@ -101,6 +104,16 @@
     
     [self.view addSubview:self.segmentedControl4];
     
+}
+
+#pragma mark - Request
+-(void)request{
+    NSDictionary *offerPageNum = nil;
+    [RequestAPI requestURL:[NSString stringWithFormat:@"/findAlldemandByType_edu?type=%ld&pageNum=%ld&pageSize=%ld", (long)type, (long)offerPageNum, (long)offerPageSize] withParameters:offerPageNum andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject=%@",responseObject);
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"失败");
+    }];
 }
 
 #pragma mark - TableView

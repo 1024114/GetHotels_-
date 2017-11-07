@@ -22,7 +22,10 @@
     nc.tabBarItem.title = @"航空报价";
     UIViewController *nc1 = [Utilities getStoryboardInstance:@"HotelStoryboard" byIdentity:@"hotel"];
     nc1.tabBarItem.image = [[UIImage imageNamed:@"hotel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 75550807e49a06c83af893175f42222a53b7a2aa
     nc1.tabBarItem.title = @"酒店发布";
     [self addChildViewController:nc];
     [self addChildViewController:nc1];

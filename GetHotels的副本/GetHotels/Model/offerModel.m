@@ -14,7 +14,7 @@
     if (self){
         _date = [Utilities nullAndNilCheck:dict[@"date"] replaceBy:@"未知日期"];
         _time = [Utilities nullAndNilCheck:dict[@"time"] replaceBy:@"未知时间"];
-        _price = [Utilities nullAndNilCheck:dict[@"price"] replaceBy:@"0"];
+        _lowPrice = [Utilities nullAndNilCheck:dict[@"price"] replaceBy:@"0"];
         _space = [Utilities nullAndNilCheck:dict[@"space"] replaceBy:@"未知舱位"];
         _start = [Utilities nullAndNilCheck:dict[@"start"] replaceBy:@"未知地点"];
     }

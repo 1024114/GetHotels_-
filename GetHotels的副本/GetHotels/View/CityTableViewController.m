@@ -26,7 +26,6 @@
     [super viewDidLoad];
     [self dataInitialize];
     [self uiLayout];
-    [self hideTabBar];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -170,20 +169,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }*/
 
-#pragma mark -隐藏TabBar
-- (void)hideTabBar {
-    if (self.tabBarController.tabBar.hidden == YES) {
-        return;
-    }
-    UIView *contentView;
-    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    else
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
-    self.tabBarController.tabBar.hidden = YES;
-    
-}
+
 
 
 /*
