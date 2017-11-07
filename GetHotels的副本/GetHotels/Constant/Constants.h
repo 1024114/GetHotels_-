@@ -43,7 +43,7 @@
 #define FRelease(x) {[x removeFromSuperview]; x = nil;}
 
 //设置Server
-#define kServer @"http://club.fisheep.com.cn"
+#define kServer @"https://gethotels.fisheep.com.cn"
 #define kQNServer @"http://oo81h9152.bkt.clouddn.com/"
 
 #endif
