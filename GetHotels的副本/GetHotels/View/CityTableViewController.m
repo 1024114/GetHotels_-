@@ -27,6 +27,7 @@
     [self dataInitialize];
     [self uiLayout];
     
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,7 +49,7 @@
     
     //通过沙盒拿到文件的路径
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cities" ofType:@"plist"];
-    //NSLog(@"filePath = %@",filePath);
+    NSLog(@"filePath = %@",filePath);
     //初始化一个文件管理器
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if ([fileMgr fileExistsAtPath:filePath]) {
@@ -62,7 +63,7 @@
         //NSLog(@"fileContent = %@",fileContent);
         //将上述字典中的键全部读取到数组中
         NSArray *keyArray = [fileContent allKeys];
-        //NSLog(@"keyArray = %@",keyArray);
+        NSLog(@"keyArray = %@",keyArray);
         //将上述所有键的数组进行升序排序，赋值给全局的可变数组
         _keys = (NSMutableArray *)[keyArray sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
     }
@@ -76,6 +77,7 @@
     self.navigationController.navigationItem.title = @"选择城市";
 }
 
+#pragma mark - Location
 
 //地理编码
 -(void)seachReGeocodeWithLacation{
@@ -87,6 +89,7 @@
         CLGeocoder *reGeo = [[CLGeocoder alloc] init];
         //使用反向地理编码的方法
         [reGeo reverseGeocodeLocation:_location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            NSLog(@"error = %@,placemarks = %lu",error,placemarks.count);
             if (!error && placemarks.count > 0) {
                 //将位置信息提取出来
                 CLPlacemark *pl = placemarks[0];
@@ -152,7 +155,7 @@
 }
 
 //选中行时调用
-/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消当前选中行的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //通过当前选中的组号拿到对应的组标题(键名)
@@ -167,7 +170,7 @@
     [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:NO];
     //返回上个页面
     [self.navigationController popViewControllerAnimated:YES];
-}*/
+}
 
 
 

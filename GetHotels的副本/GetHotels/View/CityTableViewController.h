@@ -10,4 +10,6 @@
 
 @interface CityTableViewController : UITableViewController
 
+@property(nonatomic)NSNumber *tag;
+
 @end

@@ -18,6 +18,7 @@
 		B27E42BD1FB1851800C2093D /* offerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E42BA1FB1851700C2093D /* offerModel.m */; };
 		B27E42BE1FB1851800C2093D /* HotelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E42BB1FB1851700C2093D /* HotelModel.m */; };
 		B27E42C11FB1999000C2093D /* QuoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E42C01FB1999000C2093D /* QuoteViewController.m */; };
+		B2BC96B21FB295FC002C0AF5 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2BC96B11FB295FB002C0AF5 /* Cities.plist */; };
 		B2D8B6B91FB04354003A2208 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8B6B81FB04354003A2208 /* CityTableViewController.m */; };
 		B2D8B6BB1FB049FA003A2208 /* Air.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D8B6BA1FB049FA003A2208 /* Air.storyboard */; };
 		B2D9F1811FB0525A009FB5CF /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D9F1801FB0525A009FB5CF /* TabbarViewController.m */; };
@@ -108,6 +109,7 @@
 		B27E42BC1FB1851700C2093D /* HotelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelModel.h; sourceTree = "<group>"; };
 		B27E42BF1FB1999000C2093D /* QuoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuoteViewController.h; sourceTree = "<group>"; };
 		B27E42C01FB1999000C2093D /* QuoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteViewController.m; sourceTree = "<group>"; };
+		B2BC96B11FB295FB002C0AF5 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 		B2D8B6B71FB04354003A2208 /* CityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		B2D8B6B81FB04354003A2208 /* CityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		B2D8B6BA1FB049FA003A2208 /* Air.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Air.storyboard; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		B26D932C1FA80AC3008F6715 /* GetHotels */ = {
 			isa = PBXGroup;
 			children = (
+				B2BC96B11FB295FB002C0AF5 /* Cities.plist */,
 				B2E48A621FAFF85800725555 /* 3rd */,
 				B2E48A211FAFF85700725555 /* Constant */,
 				B2E48A231FAFF85700725555 /* Model */,
@@ -571,6 +574,7 @@
 				8415B0481FB036250081B393 /* HotelStoryboard.storyboard in Resources */,
 				B2E48A7F1FAFF85800725555 /* LaunchScreen.storyboard in Resources */,
 				B2D8B6BB1FB049FA003A2208 /* Air.storyboard in Resources */,
+				B2BC96B21FB295FC002C0AF5 /* Cities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
