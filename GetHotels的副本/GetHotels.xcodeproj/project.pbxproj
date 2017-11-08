@@ -19,6 +19,7 @@
 		B27E42BE1FB1851800C2093D /* HotelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E42BB1FB1851700C2093D /* HotelModel.m */; };
 		B27E42C11FB1999000C2093D /* QuoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E42C01FB1999000C2093D /* QuoteViewController.m */; };
 		B2BC96B21FB295FC002C0AF5 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2BC96B11FB295FB002C0AF5 /* Cities.plist */; };
+		B2BC96B51FB2A0DE002C0AF5 /* QuoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC96B41FB2A0DE002C0AF5 /* QuoteTableViewCell.m */; };
 		B2D8B6B91FB04354003A2208 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8B6B81FB04354003A2208 /* CityTableViewController.m */; };
 		B2D8B6BB1FB049FA003A2208 /* Air.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D8B6BA1FB049FA003A2208 /* Air.storyboard */; };
 		B2D9F1811FB0525A009FB5CF /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D9F1801FB0525A009FB5CF /* TabbarViewController.m */; };
@@ -110,6 +111,8 @@
 		B27E42BF1FB1999000C2093D /* QuoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuoteViewController.h; sourceTree = "<group>"; };
 		B27E42C01FB1999000C2093D /* QuoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteViewController.m; sourceTree = "<group>"; };
 		B2BC96B11FB295FB002C0AF5 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
+		B2BC96B31FB2A0DE002C0AF5 /* QuoteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuoteTableViewCell.h; sourceTree = "<group>"; };
+		B2BC96B41FB2A0DE002C0AF5 /* QuoteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteTableViewCell.m; sourceTree = "<group>"; };
 		B2D8B6B71FB04354003A2208 /* CityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		B2D8B6B81FB04354003A2208 /* CityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		B2D8B6BA1FB049FA003A2208 /* Air.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Air.storyboard; sourceTree = "<group>"; };
@@ -370,8 +373,12 @@
 		B2E48A521FAFF85700725555 /* Air */ = {
 			isa = PBXGroup;
 			children = (
-				B2E48A531FAFF85700725555 /* AirTableViewCell.h */,
-				B2E48A541FAFF85700725555 /* AirTableViewCell.m */,
+				B2E48A571FAFF85700725555 /* CanOfferTableViewController.h */,
+				B2E48A581FAFF85700725555 /* CanOfferTableViewController.m */,
+				B2E48A591FAFF85700725555 /* CantOfferTableViewController.h */,
+				B2E48A5A1FAFF85700725555 /* CantOfferTableViewController.m */,
+				B2D8B6B71FB04354003A2208 /* CityTableViewController.h */,
+				B2D8B6B81FB04354003A2208 /* CityTableViewController.m */,
 				B2E48A551FAFF85700725555 /* AirViewController.h */,
 				B2E48A561FAFF85700725555 /* AirViewController.m */,
 				B27E42BF1FB1999000C2093D /* QuoteViewController.h */,
@@ -383,12 +390,8 @@
 		B2E48A5C1FAFF85700725555 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2E48A571FAFF85700725555 /* CanOfferTableViewController.h */,
-				B2E48A581FAFF85700725555 /* CanOfferTableViewController.m */,
-				B2E48A591FAFF85700725555 /* CantOfferTableViewController.h */,
-				B2E48A5A1FAFF85700725555 /* CantOfferTableViewController.m */,
-				B2D8B6B71FB04354003A2208 /* CityTableViewController.h */,
-				B2D8B6B81FB04354003A2208 /* CityTableViewController.m */,
+				B2E48A531FAFF85700725555 /* AirTableViewCell.h */,
+				B2E48A541FAFF85700725555 /* AirTableViewCell.m */,
 				8415B0531FB0402C0081B393 /* HotelTableViewCell.h */,
 				8415B0541FB0402C0081B393 /* HotelTableViewCell.m */,
 				B2E48A601FAFF85700725555 /* Main.storyboard */,
@@ -396,6 +399,8 @@
 				B2E48A5E1FAFF85700725555 /* LaunchScreen.storyboard */,
 				8415B0471FB036250081B393 /* HotelStoryboard.storyboard */,
 				B2D8B6BA1FB049FA003A2208 /* Air.storyboard */,
+				B2BC96B31FB2A0DE002C0AF5 /* QuoteTableViewCell.h */,
+				B2BC96B41FB2A0DE002C0AF5 /* QuoteTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				B2E48A781FAFF85800725555 /* StorageMgr.m in Sources */,
 				B2E48A721FAFF85800725555 /* ErrorHandler.m in Sources */,
 				8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */,
+				B2BC96B51FB2A0DE002C0AF5 /* QuoteTableViewCell.m in Sources */,
 				B2E48A711FAFF85800725555 /* AppAPIClient.m in Sources */,
 				B2E48A741FAFF85800725555 /* NSDate+Utility.m in Sources */,
 				B2D9F1811FB0525A009FB5CF /* TabbarViewController.m in Sources */,

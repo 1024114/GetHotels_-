@@ -21,5 +21,6 @@
 #import "NSString+Crypt.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ErrorHandler.h"
+#import "QuoteTableViewCell.h"
 
 #endif /* PrefixHeader_pch */
