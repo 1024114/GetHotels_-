@@ -137,9 +137,17 @@
                                 <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <items>
-                                    <barButtonItem title="取消" id="ZeS-UH-CIy"/>
+                                    <barButtonItem title="取消" id="ZeS-UH-CIy">
+                                        <connections>
+                                            <action selector="cancelAction:" destination="MP5-FK-zbj" id="5r8-p8-SVF"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="N9u-r6-6lQ"/>
-                                    <barButtonItem title="确定" id="aIm-WH-veK"/>
+                                    <barButtonItem title="确定" id="aIm-WH-veK">
+                                        <connections>
+                                            <action selector="yesAction:" destination="MP5-FK-zbj" id="61T-mT-qMJ"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -204,7 +212,6 @@
                     <connections>
                         <outlet property="areaTextField" destination="udq-Uw-k9P" id="Vqi-rz-yfS"/>
                         <outlet property="bedTextField" destination="5Pu-xB-fde" id="HJE-KU-c71"/>
-                        <outlet property="cancelItem" destination="ZeS-UH-CIy" id="cGM-7Y-vOo"/>
                         <outlet property="moringTextField" destination="Q65-cu-d7S" id="JB6-7v-Ufz"/>
                         <outlet property="pickerView" destination="UCv-nF-SQd" id="TYe-DJ-fTU"/>
                         <outlet property="priceTextField" destination="ENe-IW-gRN" id="WVC-XQ-XeB"/>
@@ -232,7 +239,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H8I-Nk-pmZ" id="jUG-vk-f7x">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="151.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒店名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KN-np-UPB">

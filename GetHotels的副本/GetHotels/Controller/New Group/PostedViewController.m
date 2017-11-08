@@ -19,7 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelItem;
+- (IBAction)cancelAction:(UIBarButtonItem *)sender;
+
+- (IBAction)yesAction:(UIBarButtonItem *)sender;
 
 - (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event;
 
@@ -58,14 +60,16 @@
     self.navigationController.navigationBar.hidden = NO;
     //配置导航栏上的item的风格颜色（如果是文字则文字变成白色，如果是图片则图片的透明部分变成白色）
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    //为导航条左上角创建一个按钮
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(backAction)];
+//    self.navigationItem.leftBarButtonItem = left;
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(Issue)];
+//    self.navigationItem.rightBarButtonItem = right;
     //自定义返回按钮
     //self.navigationController.navigationItem.leftBarButtonItem = ;
 }
 
-#pragma mark - 选择酒店按钮样式
-- (void)btnStyle{
-    [_selectBtn.layer setBorderColor:[UIColor colorWithRed:0.19 green:0.57 blue:0.95 alpha:1].CGColor];//边框颜色
-}
+
 
 /*
 #pragma mark - Navigation
@@ -76,6 +80,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)cancelAction:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)yesAction:(UIBarButtonItem *)sender {
+}
 
 - (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
