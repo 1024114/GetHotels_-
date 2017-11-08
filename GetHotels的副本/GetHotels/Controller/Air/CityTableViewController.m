@@ -49,7 +49,7 @@
     
     //通过沙盒拿到文件的路径
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Cities" ofType:@"plist"];
-    NSLog(@"filePath = %@",filePath);
+    //NSLog(@"filePath = %@",filePath);
     //初始化一个文件管理器
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if ([fileMgr fileExistsAtPath:filePath]) {
@@ -75,35 +75,6 @@
     self.tableView.tableFooterView = [UITableView new];
     //设置导航栏的标题
     self.navigationController.navigationItem.title = @"选择城市";
-}
-
-#pragma mark - Location
-
-//地理编码
--(void)seachReGeocodeWithLacation{
-    //设置一个延迟的时间
-    dispatch_time_t poptime = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
-    //延迟一段时间执行
-    dispatch_after(poptime, dispatch_get_main_queue(), ^{
-        //创建一个地理编码的对象
-        CLGeocoder *reGeo = [[CLGeocoder alloc] init];
-        //使用反向地理编码的方法
-        [reGeo reverseGeocodeLocation:_location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            NSLog(@"error = %@,placemarks = %lu",error,placemarks.count);
-            if (!error && placemarks.count > 0) {
-                //将位置信息提取出来
-                CLPlacemark *pl = placemarks[0];
-                //拿到城市名
-                NSString *city = [pl.locality substringToIndex:pl.locality.length - 1];
-                //把城市名存入单例化的全局变量中
-                [Utilities removeUserDefaults:@"LocCity"];
-                [Utilities setUserDefaults:@"LocCity" content:city];
-            }
-        }];
-        //停止定位
-        [_locationMgr stopUpdatingLocation];
-    });
-    
 }
 
 
