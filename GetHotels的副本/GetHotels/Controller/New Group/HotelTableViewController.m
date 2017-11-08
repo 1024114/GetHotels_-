@@ -7,8 +7,11 @@
 //
 
 #import "HotelTableViewController.h"
+#import "HotelTableViewCell.h"
+#import "PostedViewController.h"
+#import "HotelModel.h"
 
-@interface HotelTableViewController ()<UITableViewDelegate>
+@interface HotelTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 - (IBAction)postedBtn:(UIBarButtonItem *)sender;
 
 //声明一个可变数组array
@@ -45,7 +48,8 @@
     //更改导航栏的标题
     self.navigationItem.title = NSLocalizedString(@"我的酒店", nil);
     //设置导航栏颜色（风格颜色：导航栏整体的背景色和状态栏整体的背景色）
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
+    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(14, 124, 246);
+//    [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
     //配置导航栏的毛玻璃效果 YES表示有  NO表示没有
     [self.navigationController.navigationBar setTranslucent:YES];
     //设置导航栏是否隐藏
@@ -79,7 +83,7 @@
 
 //细胞的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150.f;
+    return 140.f;
 }
 
 //选中行时调用
@@ -87,7 +91,6 @@
     //取消当前选中行的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 
 /*
