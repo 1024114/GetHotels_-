@@ -20,6 +20,7 @@
 @property(strong,nonatomic)NSString *airlines;//航空公司
 @property(strong,nonatomic)NSString *start;//出发地
 @property(strong,nonatomic)NSString *end;//目的地
+@property(strong,nonatomic)NSString *weight;//重量
 
 - (instancetype)initWithDict: (NSDictionary *)dict;
 
