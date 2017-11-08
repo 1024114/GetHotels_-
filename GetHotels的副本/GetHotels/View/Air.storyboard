@@ -614,8 +614,8 @@
                                     <outlet property="delegate" destination="9rd-jP-HfI" id="UyU-a8-kfl"/>
                                 </connections>
                             </tableView>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7I-zM-ePb">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                            <pickerView hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A7I-zM-ePb">
+                                <rect key="frame" x="0.0" y="504" width="375" height="163"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-v7-oHI">
                                 <rect key="frame" x="15" y="79" width="67" height="28"/>

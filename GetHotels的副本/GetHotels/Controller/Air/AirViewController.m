@@ -55,6 +55,9 @@
 -(void)dataInitialize{
     //初始可变化数组
     _array = [NSMutableArray new];
+    offerFlag=1;
+    offerPageNum=1;
+    _offerarr=[NSMutableArray new];
 }
 
 -(void)uiLayout{
@@ -108,9 +111,20 @@
 
 #pragma mark - Request
 -(void)request{
-    NSDictionary *offerPageNum = nil;
-    [RequestAPI requestURL:[NSString stringWithFormat:@"/findAlldemandByType_edu?type=%ld&pageNum=%ld&pageSize=%ld", (long)type, (long)offerPageNum, (long)offerPageSize] withParameters:offerPageNum andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@5};
+    [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         NSLog(@"responseObject=%@",responseObject);
+        if ([responseObject[@"result"] integerValue] == 1) {
+            NSDictionary *result = responseObject[@"content"];
+            NSArray *arr = result[@"list"];
+            offerLast=[result[@"isLastPage"]boolValue];
+            [_offerarr removeAllObjects];
+            for(NSDictionary *dict in arr){
+                offerModel *model=[[offerModel alloc]initWithDict:dict];
+                [_offerarr addObject:model];
+            }
+            [_tableView reloadData];
+        }
     } failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"失败");
     }];

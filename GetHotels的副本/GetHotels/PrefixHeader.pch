@@ -22,5 +22,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ErrorHandler.h"
 #import "QuoteTableViewCell.h"
+#import "offerModel.h"
 
 #endif /* PrefixHeader_pch */
