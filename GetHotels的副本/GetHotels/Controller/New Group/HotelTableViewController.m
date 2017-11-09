@@ -37,6 +37,7 @@
     [self navigationConfiguration];
     [self tableView];
     [self request];
+    [self dataInitialize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,9 +76,29 @@
 
 #pragma mark - Request
 -(void)request{
-    NSDictionary *para=@{@"business_id":@2};
+    NSDictionary *para=@{@"business_id":@1};
+    //网络请求
     [RequestAPI requestURL:@"/findHotelBySelf" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
-        NSLog(@"responseObject1234354354534=%@",responseObject);
+        NSLog(@"responseObject = %@",responseObject);
+        //if ([responseObject[@"resultFlag"] integerValue] == 1) {
+            //解析数据
+            NSArray *list = responseObject[@"content"];
+            //遍历上述数组拿到每条数据（每个字典）
+            
+            for(NSDictionary *dict in list){
+                //将遍历得来的字典转换成model
+                HotelModel *hotelModel=[[HotelModel alloc]initWithDict:dict];
+                NSLog(@"hotelName = %@", hotelModel.hotelName);
+                //将上述model放入可变数组中
+                [_hotelarr addObject:hotelModel];
+                //让tableView重载数据
+                [self.tabelView reloadData];
+            }
+//        }else{
+//            //业务逻辑失败的情况
+//            [Utilities popUpAlertViewWithMsg:@"请求失败，请稍后再试" andTitle:@"提示" onView:self onCompletion:^{}];
+//        }
+
     } failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"失败");
     }];
@@ -91,16 +112,22 @@
     return 1;
 }
 
+
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 3;
+    return _hotelarr.count;
 }
 
 //每行长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
-
+   HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
+    
+    HotelModel *hotelModel = _hotelarr[indexPath.section];
+    //设置细胞的值
+    cell.describeLabel.text = hotelModel.hotelDescribe;
+    
+    
     return cell;
 }
 
