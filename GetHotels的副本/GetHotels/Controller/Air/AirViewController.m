@@ -23,9 +23,9 @@
 }
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-//自定义一个可变数组
-@property (strong, nonatomic) NSMutableArray *array;
+@property (weak, nonatomic) IBOutlet UITableView *offerTableView;
+@property (weak, nonatomic) IBOutlet UITableView *staleTableView;
+//自定义可变数组
 @property (strong, nonatomic) NSMutableArray *offerarr;
 @property (strong, nonatomic) NSMutableArray *cantOfferarr;
 
@@ -54,7 +54,6 @@
 
 -(void)dataInitialize{
     //初始可变化数组
-    _array = [NSMutableArray new];
     offerFlag=1;
     offerPageNum=1;
     _offerarr=[NSMutableArray new];
@@ -114,18 +113,19 @@
     NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@5};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         NSLog(@"responseObject=%@",responseObject);
-        if ([responseObject[@"result"] integerValue] == 1) {
-            NSDictionary *result = responseObject[@"content"];
-            NSArray *arr = result[@"list"];
-            offerLast=[result[@"isLastPage"]boolValue];
+        NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
+        NSArray *list=result[@"list"];
+        offerLast=[result[@"isLastPage"]boolValue];
+        if(offerPageNum==1){
             [_offerarr removeAllObjects];
-            for(NSDictionary *dict in arr){
-                offerModel *model=[[offerModel alloc]initWithDict:dict];
-                [_offerarr addObject:model];
-            }
-            [_tableView reloadData];
         }
-    } failure:^(NSInteger statusCode, NSError *error) {
+        for(NSDictionary *dict in list){
+            offerModel *offModel=[[offerModel alloc]initWithDict:dict];
+            [_offerarr addObject:offModel];
+        }
+            [_offerTableView reloadData];
+        }
+     failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"失败");
     }];
 }
@@ -134,13 +134,28 @@
 
 //每组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return _offerarr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AirTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    //cell.dateLabel.text = @"123";
-    return cell;
+    if (tableView == _offerTableView) {
+        //通过细胞的Identifier拿到对应的细胞
+        AirTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        offerModel *offModel = _offerarr[indexPath.section];
+        NSString *startTimeStr1 = [offModel.startTime substringFromIndex:11];
+        NSString *startTimeStr2 = [startTimeStr1 substringToIndex:2];
+        NSString *startDate1 = [offModel.startTime substringFromIndex:5];
+        NSString *startDate2 = [startDate1 substringToIndex:5];
+        
+        cell.startLabel.text = offModel.start;
+        cell.endLabel.text = offModel.end;
+        cell.priceLabel.text = [NSString stringWithFormat:@"价格区间:¥%@———%@",offModel.lowPrice,offModel.highPrice];
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@时左右",startTimeStr2];
+        cell.dateLabel.text = startDate2;
+        cell.airlinesLabel.text = offModel.airlines;
+        return cell;
+    }
+    return nil;
 }
 
 //细胞的高度

@@ -21,6 +21,7 @@
         _highPrice = [Utilities nullAndNilCheck:dict[@"high_price"] replaceBy:@"0"];//最高价
         _lowPrice = [Utilities nullAndNilCheck:dict[@"low_price"] replaceBy:@"0"];//最低价
         _weight = [Utilities nullAndNilCheck:dict[@"weight"] replaceBy:@"0"];//重量
+        _startTime = [Utilities nullAndNilCheck:dict[@"start_time_str"] replaceBy:@"未知时间"];//出发时间
         _airID = [[Utilities nullAndNilCheck:dict[@"id"] replaceBy:@""] integerValue];//航班ID
     }
     return self;

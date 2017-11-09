@@ -310,7 +310,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="lq9-94-874"/>
                     <connections>
-                        <outlet property="tableView" destination="BDP-mw-XWi" id="eKb-gT-rAi"/>
+                        <outlet property="offerTableView" destination="BDP-mw-XWi" id="8Er-uq-0tx"/>
+                        <outlet property="staleTableView" destination="rDH-Yn-Xgq" id="RvO-pe-5Si"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBy-x5-fSN" sceneMemberID="firstResponder"/>

@@ -21,6 +21,7 @@
 @property(strong,nonatomic)NSString *start;//出发地
 @property(strong,nonatomic)NSString *end;//目的地
 @property(strong,nonatomic)NSString *weight;//重量
+@property(strong,nonatomic)NSString *startTime;//出发时间
 
 - (instancetype)initWithDict: (NSDictionary *)dict;
 
