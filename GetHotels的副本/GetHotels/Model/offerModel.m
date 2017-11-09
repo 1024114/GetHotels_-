@@ -14,7 +14,7 @@
     if (self){
         _lowTime = [Utilities nullAndNilCheck:dict[@"set_low_time_str"] replaceBy:@"未知时间"];//最早时间
         _highTime = [Utilities nullAndNilCheck:dict[@"set_high_time_str"] replaceBy:@"未知时间"];//最晚时间
-        _space = [Utilities nullAndNilCheck:dict[@""] replaceBy:@"未知舱位"];//舱位
+        _airlines = [Utilities nullAndNilCheck:dict[@"aviation_demand_detail"] replaceBy:@"未知舱位"];//舱位
         _title = [Utilities nullAndNilCheck:dict[@"aviation_demand_title"] replaceBy:@"未知地点"];//标题
         _start = [Utilities nullAndNilCheck:dict[@"departure"] replaceBy:@"未知地点"];//出发地
         _end = [Utilities nullAndNilCheck:dict[@"destination"] replaceBy:@"未知地点"];//目的地

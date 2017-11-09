@@ -51,12 +51,6 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="舱位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIq-p1-vQ6">
-                                                            <rect key="frame" x="70" y="74" width="22.5" height="13.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plane" translatesAutoresizingMaskIntoConstraints="NO" id="2Wo-Id-w7q">
                                                             <rect key="frame" x="311.5" y="35" width="48.5" height="48.5"/>
                                                             <constraints>
@@ -117,7 +111,6 @@
                                                     <constraints>
                                                         <constraint firstItem="oEb-mU-RIH" firstAttribute="top" secondItem="SDD-Q6-sma" secondAttribute="top" id="1Zf-kX-3zc"/>
                                                         <constraint firstItem="Y9W-Tk-1lr" firstAttribute="top" secondItem="SDD-Q6-sma" secondAttribute="top" id="1sZ-ze-q4W"/>
-                                                        <constraint firstItem="UIq-p1-vQ6" firstAttribute="top" secondItem="FLK-rC-KwS" secondAttribute="bottom" constant="5" id="5Nh-Ro-72D"/>
                                                         <constraint firstItem="S8x-5s-GYw" firstAttribute="centerY" secondItem="PhF-AM-sY7" secondAttribute="centerY" id="5eN-L1-ipS"/>
                                                         <constraint firstItem="SDD-Q6-sma" firstAttribute="leading" secondItem="QFX-wg-cDD" secondAttribute="leadingMargin" constant="5" id="6Ys-Vi-Otu"/>
                                                         <constraint firstItem="PhF-AM-sY7" firstAttribute="leading" secondItem="SDD-Q6-sma" secondAttribute="leading" id="8sT-mg-yir"/>
@@ -128,7 +121,6 @@
                                                         <constraint firstItem="2Wo-Id-w7q" firstAttribute="top" secondItem="QFX-wg-cDD" secondAttribute="top" constant="35" id="JpP-we-0HN"/>
                                                         <constraint firstItem="ehE-Qb-lYg" firstAttribute="centerY" secondItem="j7P-tg-1Yt" secondAttribute="centerY" id="P6X-y6-d7w"/>
                                                         <constraint firstItem="ehE-Qb-lYg" firstAttribute="leading" secondItem="FLK-rC-KwS" secondAttribute="leading" id="Pa9-FI-ggI"/>
-                                                        <constraint firstItem="UIq-p1-vQ6" firstAttribute="centerY" secondItem="ehE-Qb-lYg" secondAttribute="centerY" id="SKB-vA-KiS"/>
                                                         <constraint firstItem="9Qg-kt-l4V" firstAttribute="top" secondItem="SDD-Q6-sma" secondAttribute="top" id="X2X-2N-nhl"/>
                                                         <constraint firstItem="S8x-5s-GYw" firstAttribute="leading" secondItem="PhF-AM-sY7" secondAttribute="trailing" constant="3" id="Z3p-hv-t8U"/>
                                                         <constraint firstItem="FLK-rC-KwS" firstAttribute="top" secondItem="S8x-5s-GYw" secondAttribute="bottom" constant="5" id="c8K-WJ-ghq"/>
@@ -139,7 +131,7 @@
                                                         <constraint firstItem="FLK-rC-KwS" firstAttribute="centerY" secondItem="OUt-lm-SzG" secondAttribute="centerY" id="mIA-xw-r3B"/>
                                                         <constraint firstItem="Y9W-Tk-1lr" firstAttribute="leading" secondItem="9Qg-kt-l4V" secondAttribute="trailing" constant="2" id="mfh-A6-Yur"/>
                                                         <constraint firstItem="OUt-lm-SzG" firstAttribute="trailing" secondItem="PhF-AM-sY7" secondAttribute="trailing" id="nxY-CL-VK0"/>
-                                                        <constraint firstItem="UIq-p1-vQ6" firstAttribute="leading" secondItem="ehE-Qb-lYg" secondAttribute="trailing" constant="1" id="oKb-32-Spd"/>
+                                                        <constraint firstItem="ehE-Qb-lYg" firstAttribute="top" secondItem="FLK-rC-KwS" secondAttribute="bottom" constant="5" id="oXj-D1-iv5"/>
                                                         <constraint firstItem="SDD-Q6-sma" firstAttribute="top" secondItem="QFX-wg-cDD" secondAttribute="topMargin" constant="5" id="ppv-j1-Xwa"/>
                                                         <constraint firstItem="S8x-5s-GYw" firstAttribute="top" secondItem="SDD-Q6-sma" secondAttribute="bottom" constant="5" id="q75-ze-mOr"/>
                                                         <constraint firstItem="FLK-rC-KwS" firstAttribute="leading" secondItem="S8x-5s-GYw" secondAttribute="leading" id="qj9-u4-RED"/>
@@ -153,7 +145,6 @@
                                                     <outlet property="dateLabel" destination="SDD-Q6-sma" id="avY-mJ-Q72"/>
                                                     <outlet property="endLabel" destination="Y9W-Tk-1lr" id="Eg9-KJ-SqT"/>
                                                     <outlet property="priceLabel" destination="S8x-5s-GYw" id="dIh-jK-sJ8"/>
-                                                    <outlet property="spaceLabel" destination="UIq-p1-vQ6" id="Wyc-Fw-15U"/>
                                                     <outlet property="startLabel" destination="5YA-Ef-pPV" id="iIt-VI-wJ0"/>
                                                     <outlet property="timeLabel" destination="FLK-rC-KwS" id="omM-q5-PIy"/>
                                                     <segue destination="9rd-jP-HfI" kind="show" id="l8g-qV-FHq"/>

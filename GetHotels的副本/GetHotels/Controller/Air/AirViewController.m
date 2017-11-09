@@ -142,11 +142,12 @@
         //通过细胞的Identifier拿到对应的细胞
         AirTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         offerModel *offModel = _offerarr[indexPath.section];
+        //字符串的操作
         NSString *startTimeStr1 = [offModel.startTime substringFromIndex:11];
         NSString *startTimeStr2 = [startTimeStr1 substringToIndex:2];
         NSString *startDate1 = [offModel.startTime substringFromIndex:5];
         NSString *startDate2 = [startDate1 substringToIndex:5];
-        
+        //设置细胞显示的值
         cell.startLabel.text = offModel.start;
         cell.endLabel.text = offModel.end;
         cell.priceLabel.text = [NSString stringWithFormat:@"价格区间:¥%@———%@",offModel.lowPrice,offModel.highPrice];
