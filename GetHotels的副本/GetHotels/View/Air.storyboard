@@ -160,7 +160,7 @@
                                         <rect key="frame" x="375" y="0.0" width="375" height="552"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="119" id="QLI-lz-cbS" customClass="AirTableViewCell">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="staleCell" rowHeight="119" id="QLI-lz-cbS" customClass="StaleTableViewCell">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QLI-lz-cbS" id="LBa-rB-2Zc">
@@ -265,12 +265,10 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="dateLabel" destination="3eW-Qf-3kD" id="Dzd-5O-Y9g"/>
-                                                    <outlet property="endLabel" destination="f6J-HP-lBq" id="JQZ-bc-1KZ"/>
-                                                    <outlet property="priceLabel" destination="kbB-L6-aah" id="ODP-o6-71m"/>
-                                                    <outlet property="spaceLabel" destination="uYx-Qw-fQc" id="8YM-ss-hFn"/>
-                                                    <outlet property="startLabel" destination="DWc-ae-BgC" id="h1e-HD-KD3"/>
-                                                    <outlet property="timeLabel" destination="nd7-JT-zBZ" id="Lcw-fD-IYP"/>
+                                                    <outlet property="dateLabel" destination="3eW-Qf-3kD" id="7yJ-r7-0eR"/>
+                                                    <outlet property="endLabel" destination="f6J-HP-lBq" id="PA7-PR-nno"/>
+                                                    <outlet property="startLabel" destination="DWc-ae-BgC" id="683-as-otm"/>
+                                                    <outlet property="timeLabel" destination="nd7-JT-zBZ" id="tJW-a1-TBB"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -621,7 +619,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Og-zM-O9x">
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Og-zM-O9x">
                                 <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="531816302.923832">
                                     <!--2017-11-08 06:45:02 +0000-->
@@ -675,7 +673,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32m-o3-5Ya">
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32m-o3-5Ya">
                                 <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="取消" id="zMz-KJ-95N">

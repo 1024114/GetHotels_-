@@ -9,6 +9,7 @@
 #import "AirViewController.h"
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import "AirTableViewCell.h"
+#import "StaleTableViewCell.h"
 
 
 @interface AirViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
@@ -26,8 +27,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *offerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *staleTableView;
 //自定义可变数组
-@property (strong, nonatomic) NSMutableArray *offerarr;
+@property (strong, nonatomic) NSMutableArray *offerArr;
 @property (strong, nonatomic) NSMutableArray *cantOfferarr;
+@property (strong, nonatomic) NSMutableArray *staleArr;
 
 @end
 
@@ -41,7 +43,7 @@
     [self uiLayout];
     [self dataInitialize];
     [self segmentedControlset];
-    [self request];
+    [self offerRequest];
     
     
     // Do any additional setup after loading the view.
@@ -54,9 +56,10 @@
 
 -(void)dataInitialize{
     //初始可变化数组
-    offerFlag=1;
-    offerPageNum=1;
-    _offerarr=[NSMutableArray new];
+    offerFlag = 1;
+    offerPageNum = 1;
+    _offerArr = [NSMutableArray new];
+    _staleArr = [NSMutableArray new];
 }
 
 -(void)uiLayout{
@@ -109,19 +112,19 @@
 }
 
 #pragma mark - Request
--(void)request{
-    NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@5};
+-(void)offerRequest{
+    NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
         offerLast=[result[@"isLastPage"]boolValue];
         if(offerPageNum==1){
-            [_offerarr removeAllObjects];
+            [_offerArr removeAllObjects];
         }
         for(NSDictionary *dict in list){
             offerModel *offModel=[[offerModel alloc]initWithDict:dict];
-            [_offerarr addObject:offModel];
+            [_offerArr addObject:offModel];
         }
             [_offerTableView reloadData];
         }
@@ -134,14 +137,16 @@
 
 //每组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _offerarr.count;
+    return _offerArr.count;
 }
 
+//每行长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //判断是可报价还是已过期
     if (tableView == _offerTableView) {
         //通过细胞的Identifier拿到对应的细胞
         AirTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        offerModel *offModel = _offerarr[indexPath.section];
+        offerModel *offModel = _offerArr[indexPath.section];
         //字符串的操作
         NSString *startTimeStr1 = [offModel.startTime substringFromIndex:11];
         NSString *startTimeStr2 = [startTimeStr1 substringToIndex:2];
@@ -155,6 +160,9 @@
         cell.dateLabel.text = startDate2;
         cell.airlinesLabel.text = offModel.airlines;
         return cell;
+    } else if (tableView == _staleTableView){
+        StaleTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"offeredCell" forIndexPath:indexPath];
+        StaleModel *staleModel = _staleArr[indexPath.section];
     }
     return nil;
 }
@@ -167,6 +175,12 @@
 //选中行时调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消当前选中行的选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == _offerTableView) {
+        offerModel *off = _offerArr[indexPath.section];
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"id"];
+        [[StorageMgr singletonStorageMgr]addKey:@"id" andValue:@(off.airID)];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
