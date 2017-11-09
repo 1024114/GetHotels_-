@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *flightTextField;//航班
 @property (weak, nonatomic) IBOutlet UITextField *spaceTextField;//舱位
 @property (weak, nonatomic) IBOutlet UITextField *weightTextField;//行李重量
+@property (weak, nonatomic) IBOutlet UIDatePicker *pickerView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+- (IBAction)cancelAction:(UIBarButtonItem *)sender;
+- (IBAction)yesAction:(UIBarButtonItem *)sender;
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event;//确认按钮
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -66,6 +70,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)cancelAction:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)yesAction:(UIBarButtonItem *)sender {
+}
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
