@@ -23,5 +23,6 @@
 #import "ErrorHandler.h"
 #import "QuoteTableViewCell.h"
 #import "offerModel.h"
+#import "StaleModel.h"
 
 #endif /* PrefixHeader_pch */
