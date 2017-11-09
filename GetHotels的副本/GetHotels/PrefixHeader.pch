@@ -23,5 +23,8 @@
 #import "ErrorHandler.h"
 #import "QuoteTableViewCell.h"
 #import "offerModel.h"
+#import "HotelTableViewCell.h"
+#import "PostedViewController.h"
+#import "HotelModel.h"
 
 #endif /* PrefixHeader_pch */

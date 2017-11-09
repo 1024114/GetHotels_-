@@ -7,15 +7,20 @@
 //
 
 #import "HotelTableViewController.h"
-#import "HotelTableViewCell.h"
-#import "PostedViewController.h"
-#import "HotelModel.h"
 
-@interface HotelTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface HotelTableViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger hotelPageNum;
+    BOOL hotelLast;
+    NSInteger type;
+    
+}
 - (IBAction)postedBtn:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tabelView;
 
 //声明一个可变数组array
 @property (strong, nonatomic) NSMutableArray *array;
+@property (strong, nonatomic) NSMutableArray *hotelarr;
 
 @end
 
@@ -31,11 +36,19 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self navigationConfiguration];
     [self tableView];
+    [self request];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dataInitialize{
+    //初始可变化数组
+    _array = [NSMutableArray new];
+    hotelPageNum=1;
+    _hotelarr=[NSMutableArray new];
 }
 
 //设置导航栏的方法
@@ -60,7 +73,15 @@
     //self.navigationController.navigationItem.leftBarButtonItem = ;
 }
 
-
+#pragma mark - Request
+-(void)request{
+    NSDictionary *para=@{@"business_id":@2};
+    [RequestAPI requestURL:@"/findHotelBySelf" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject1234354354534=%@",responseObject);
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"失败");
+    }];
+}
 
 #pragma mark - Table view data source(关于细胞)
 

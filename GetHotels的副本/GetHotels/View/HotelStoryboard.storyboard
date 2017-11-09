@@ -243,37 +243,37 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒店名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KN-np-UPB">
-                                            <rect key="frame" x="23" y="23" width="329" height="20.5"/>
+                                            <rect key="frame" x="15" y="23" width="337" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.29567459229999998" green="0.54654091599999999" blue="0.96584600210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotels" translatesAutoresizingMaskIntoConstraints="NO" id="Sdq-mE-VQg">
-                                            <rect key="frame" x="23" y="63.5" width="98" height="65"/>
+                                            <rect key="frame" x="15" y="63.5" width="98" height="65"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Sdq-mE-VQg" secondAttribute="height" multiplier="3:2" id="WdA-NA-kzr"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面积：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWc-Fd-wsG">
-                                            <rect key="frame" x="136" y="89.5" width="151" height="16"/>
+                                            <rect key="frame" x="128" y="89.5" width="172" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ow-AJ-q76">
-                                            <rect key="frame" x="136" y="115.5" width="216" height="16"/>
+                                            <rect key="frame" x="128" y="115.5" width="224" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="描述：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="291-O0-wFD">
-                                            <rect key="frame" x="136" y="63.5" width="216" height="16"/>
+                                            <rect key="frame" x="128" y="63.5" width="224" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotel-Bule-1" translatesAutoresizingMaskIntoConstraints="NO" id="aHP-Kp-cDk">
-                                            <rect key="frame" x="302" y="73.5" width="45" height="45"/>
+                                            <rect key="frame" x="315" y="73.5" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="aHP-Kp-cDk" secondAttribute="height" multiplier="1:1" id="8vi-45-0wt"/>
                                             </constraints>
@@ -282,7 +282,6 @@
                                     <constraints>
                                         <constraint firstItem="bWc-Fd-wsG" firstAttribute="top" secondItem="291-O0-wFD" secondAttribute="bottom" constant="10" id="0Lo-fl-rGF"/>
                                         <constraint firstItem="0Ow-AJ-q76" firstAttribute="leading" secondItem="bWc-Fd-wsG" secondAttribute="leading" id="8dZ-YC-di5"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="aHP-Kp-cDk" secondAttribute="trailing" constant="20" id="Foc-sS-d1s"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="aHP-Kp-cDk" secondAttribute="bottom" constant="25" id="H3x-nb-ZmW"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="5KN-np-UPB" secondAttribute="trailing" constant="15" id="ICc-gL-5jY"/>
                                         <constraint firstItem="5KN-np-UPB" firstAttribute="top" secondItem="jUG-vk-f7x" secondAttribute="topMargin" constant="15" id="MIS-Qg-4Yt"/>
@@ -293,8 +292,9 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="291-O0-wFD" secondAttribute="trailing" constant="15" id="gAh-Sv-htD"/>
                                         <constraint firstItem="291-O0-wFD" firstAttribute="leading" secondItem="Sdq-mE-VQg" secondAttribute="trailing" constant="15" id="gg8-IF-Tcc"/>
                                         <constraint firstItem="291-O0-wFD" firstAttribute="top" secondItem="Sdq-mE-VQg" secondAttribute="top" id="hLS-hv-c9n"/>
-                                        <constraint firstItem="5KN-np-UPB" firstAttribute="leading" secondItem="jUG-vk-f7x" secondAttribute="leadingMargin" constant="15" id="jXd-jl-9Ag"/>
+                                        <constraint firstItem="5KN-np-UPB" firstAttribute="leading" secondItem="jUG-vk-f7x" secondAttribute="leading" constant="15" id="ic1-hl-JQW"/>
                                         <constraint firstItem="aHP-Kp-cDk" firstAttribute="leading" secondItem="bWc-Fd-wsG" secondAttribute="trailing" constant="15" id="mee-Sw-Fld"/>
+                                        <constraint firstAttribute="trailing" secondItem="aHP-Kp-cDk" secondAttribute="trailing" constant="15" id="mhC-nF-1qs"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0Ow-AJ-q76" secondAttribute="trailing" constant="15" id="pK4-KA-TC4"/>
                                         <constraint firstItem="bWc-Fd-wsG" firstAttribute="leading" secondItem="291-O0-wFD" secondAttribute="leading" id="u8C-8c-h0A"/>
                                         <constraint firstItem="aHP-Kp-cDk" firstAttribute="top" secondItem="5KN-np-UPB" secondAttribute="bottom" constant="30" id="zFp-vT-Jp1"/>
@@ -323,6 +323,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tabelView" destination="5hM-28-lcP" id="6yS-lP-Eyf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkN-hB-3Uz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
