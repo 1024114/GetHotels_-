@@ -267,6 +267,7 @@
                                                 <connections>
                                                     <outlet property="dateLabel" destination="3eW-Qf-3kD" id="7yJ-r7-0eR"/>
                                                     <outlet property="endLabel" destination="f6J-HP-lBq" id="PA7-PR-nno"/>
+                                                    <outlet property="priceLabel" destination="kbB-L6-aah" id="fK6-6o-9J7"/>
                                                     <outlet property="startLabel" destination="DWc-ae-BgC" id="683-as-otm"/>
                                                     <outlet property="timeLabel" destination="nd7-JT-zBZ" id="tJW-a1-TBB"/>
                                                 </connections>

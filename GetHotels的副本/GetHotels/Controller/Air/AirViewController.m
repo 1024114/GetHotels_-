@@ -14,11 +14,11 @@
 
 @interface AirViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     NSInteger offerFlag;
-    NSInteger cantOfferFlag;
+    NSInteger staleFlag;
     NSInteger offerPageNum;
     BOOL offerLast;
-    NSInteger cantOfferPageNum;
-    BOOL cantOfferLast;
+    NSInteger stalePageNum;
+    BOOL staleLast;
     NSInteger type;
     NSInteger offerPageSize;
 }
@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *staleTableView;
 //自定义可变数组
 @property (strong, nonatomic) NSMutableArray *offerArr;
-@property (strong, nonatomic) NSMutableArray *cantOfferarr;
+@property (strong, nonatomic) NSMutableArray *staleerarr;
 @property (strong, nonatomic) NSMutableArray *staleArr;
 
 @end
@@ -44,6 +44,7 @@
     [self dataInitialize];
     [self segmentedControlset];
     [self offerRequest];
+    [self staleRequest];
     
     
     // Do any additional setup after loading the view.
@@ -59,7 +60,10 @@
     offerFlag = 1;
     offerPageNum = 1;
     _offerArr = [NSMutableArray new];
+    staleFlag = 1;
+    stalePageNum = 1;
     _staleArr = [NSMutableArray new];
+    
 }
 
 -(void)uiLayout{
@@ -115,7 +119,7 @@
 -(void)offerRequest{
     NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        NSLog(@"responseObject=%@",responseObject);
+        //NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
         offerLast=[result[@"isLastPage"]boolValue];
@@ -131,6 +135,27 @@
      failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"失败");
     }];
+}
+
+-(void)staleRequest{
+    NSDictionary *para=@{@"type":@0,@"pageNum":@(stalePageNum),@"pageSize":@10};
+    [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject=%@",responseObject);
+        NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
+        NSArray *list=result[@"list"];
+        staleLast=[result[@"isLastPage"]boolValue];
+        if(stalePageNum==1){
+            [_staleArr removeAllObjects];
+        }
+        for(NSDictionary *dict in list){
+            StaleModel *staleModel=[[StaleModel alloc]initWithDict:dict];
+            [_staleArr addObject:staleModel];
+        }
+        [_staleTableView reloadData];
+    }
+       failure:^(NSInteger statusCode, NSError *error) {
+                       NSLog(@"失败");
+                   }];
 }
 
 #pragma mark - TableView
@@ -161,8 +186,20 @@
         cell.airlinesLabel.text = offModel.airlines;
         return cell;
     } else if (tableView == _staleTableView){
-        StaleTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"offeredCell" forIndexPath:indexPath];
+        StaleTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"staleCell" forIndexPath:indexPath];
         StaleModel *staleModel = _staleArr[indexPath.section];
+        //字符串的操作
+        NSString *startTimeStr3 = [staleModel.startTime substringFromIndex:11];
+        NSString *startTimeStr4 = [startTimeStr3 substringToIndex:2];
+        NSString *startDate3 = [staleModel.startTime substringFromIndex:5];
+        NSString *startDate4 = [startDate3 substringToIndex:5];
+        //设置细胞显示的值
+        cell.startLabel.text = staleModel.start;
+        cell.endLabel.text = staleModel.end;
+        cell.priceLabel.text = [NSString stringWithFormat:@"价格区间:¥%@———%@",staleModel.lowPrice,staleModel.highPrice];
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@时左右",startTimeStr4];
+        cell.dateLabel.text = startDate4;
+        return cell;
     }
     return nil;
 }

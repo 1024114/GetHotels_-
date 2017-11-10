@@ -11,6 +11,17 @@
 @implementation StaleModel
 - (instancetype)initWithDict:(NSDictionary *)dict{
     self = [super init];
+    if (self){
+        _lowTime = [Utilities nullAndNilCheck:dict[@"set_low_time_str"] replaceBy:@"未知时间"];//最早时间
+        _highTime = [Utilities nullAndNilCheck:dict[@"set_high_time_str"] replaceBy:@"未知时间"];//最晚时间
+        _title = [Utilities nullAndNilCheck:dict[@"aviation_demand_title"] replaceBy:@"未知地点"];//标题
+        _start = [Utilities nullAndNilCheck:dict[@"departure"] replaceBy:@"未知地点"];//出发地
+        _end = [Utilities nullAndNilCheck:dict[@"destination"] replaceBy:@"未知地点"];//目的地
+        _highPrice = [Utilities nullAndNilCheck:dict[@"high_price"] replaceBy:@"0"];//最高价
+        _lowPrice = [Utilities nullAndNilCheck:dict[@"low_price"] replaceBy:@"0"];//最低价
+        _startTime = [Utilities nullAndNilCheck:dict[@"start_time_str"] replaceBy:@"未知时间"];//出发时间
+        _airID = [[Utilities nullAndNilCheck:dict[@"id"] replaceBy:@""] integerValue];//航班ID
+    }
     return self;
 }
 @end
