@@ -147,7 +147,7 @@
                                                     <outlet property="priceLabel" destination="S8x-5s-GYw" id="dIh-jK-sJ8"/>
                                                     <outlet property="startLabel" destination="5YA-Ef-pPV" id="iIt-VI-wJ0"/>
                                                     <outlet property="timeLabel" destination="FLK-rC-KwS" id="omM-q5-PIy"/>
-                                                    <segue destination="9rd-jP-HfI" kind="show" id="l8g-qV-FHq"/>
+                                                    <segue destination="9rd-jP-HfI" kind="show" id="BhO-HM-jLJ"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -446,7 +446,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmAction:forEvent:" destination="9rd-jP-HfI" eventType="touchUpInside" id="EQc-cH-Ts4"/>
-                                    <segue destination="KUW-lW-DCu" kind="show" id="ZQm-sl-Otj"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SSs-FE-gJp">
@@ -619,6 +618,9 @@
                                 <state key="normal" title="选择出发地">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startAction:forEvent:" destination="9rd-jP-HfI" eventType="touchUpInside" id="dE3-HN-DWh"/>
+                                </connections>
                             </button>
                             <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Og-zM-O9x">
                                 <rect key="frame" x="0.0" y="451" width="375" height="216"/>
@@ -633,6 +635,9 @@
                                 <state key="normal" title="选择目的地">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="endAction:forEvent:" destination="9rd-jP-HfI" eventType="touchUpInside" id="JQl-8G-Tqt"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVM-Ql-yCA">
                                 <rect key="frame" x="15" y="109" width="67" height="1"/>
@@ -666,6 +671,9 @@
                                 <state key="normal" title="选择起飞日期 时间">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="departuretime:forEvent:" destination="9rd-jP-HfI" eventType="touchUpInside" id="56P-5G-hD7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-d9-yAS">
                                 <rect key="frame" x="203.5" y="170.5" width="110" height="28"/>
@@ -673,6 +681,9 @@
                                 <state key="normal" title="选择到达日期 时间">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="arrivaltime:forEvent:" destination="9rd-jP-HfI" eventType="touchUpInside" id="zO8-zC-dSM"/>
+                                </connections>
                             </button>
                             <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32m-o3-5Ya">
                                 <rect key="frame" x="0.0" y="407" width="375" height="44"/>
@@ -773,6 +784,8 @@
                     </view>
                     <connections>
                         <outlet property="airlinesTextField" destination="PTb-8B-zqi" id="k7x-Cd-tXn"/>
+                        <outlet property="arrivaltime" destination="N8c-d9-yAS" id="SC1-oJ-auM"/>
+                        <outlet property="departuretimeBtn" destination="Mrd-r8-rRC" id="YXD-5P-aud"/>
                         <outlet property="endBtn" destination="AKP-Q8-P31" id="Y5I-6t-TIv"/>
                         <outlet property="flightTextField" destination="BCU-Qj-fB0" id="HG6-PU-muC"/>
                         <outlet property="pickerView" destination="5Og-zM-O9x" id="A3D-Ac-8MZ"/>
@@ -782,6 +795,7 @@
                         <outlet property="tableView" destination="SSs-FE-gJp" id="ovc-kY-QCf"/>
                         <outlet property="toolBar" destination="32m-o3-5Ya" id="cV9-6g-NJ7"/>
                         <outlet property="weightTextField" destination="MSJ-TA-JjK" id="hYx-gY-X5g"/>
+                        <segue destination="KUW-lW-DCu" kind="show" identifier="offerToCity" id="4g2-rU-e2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFr-QM-Cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>

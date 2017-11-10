@@ -21,6 +21,7 @@
     BOOL staleLast;
     NSInteger type;
     NSInteger offerPageSize;
+    NSInteger totalpage;
 }
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
@@ -30,6 +31,7 @@
 @property (strong, nonatomic) NSMutableArray *offerArr;
 @property (strong, nonatomic) NSMutableArray *staleerarr;
 @property (strong, nonatomic) NSMutableArray *staleArr;
+@property(strong,nonatomic)UIActivityIndicatorView *avi;
 
 @end
 
@@ -45,6 +47,7 @@
     [self segmentedControlset];
     [self offerRequest];
     [self staleRequest];
+    
     
     
     // Do any additional setup after loading the view.
@@ -97,9 +100,9 @@
     // Tying up the segmented control to a scroll view
     self.segmentedControl4 = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 60, viewWidth, 50)];
     self.segmentedControl4.sectionTitles = @[@"可报价", @"已过期"];
-    self.segmentedControl4.selectedSegmentIndex = 1;
+    self.segmentedControl4.selectedSegmentIndex = 0;
     //颜色
-    self.segmentedControl4.backgroundColor = [UIColor colorWithRed:41.f/255.f green:124.f/255.f blue:246.f/255.f alpha:1];
+    self.segmentedControl4.backgroundColor = self.navigationController.navigationBar.barTintColor;
     self.segmentedControl4.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor groupTableViewBackgroundColor]};
     self.segmentedControl4.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     self.segmentedControl4.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
@@ -219,6 +222,23 @@
         [[StorageMgr singletonStorageMgr]addKey:@"id" andValue:@(off.airID)];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//细胞将要出现的时候
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == _staleArr.count - 1) {
+        //判断数据还有没有下一页
+        if (stalePageNum < totalpage) {
+            //在这里请求下一页的数据
+            stalePageNum ++ ;
+            [self staleRequest];
+        }
+    } else if (indexPath.row == _offerArr.count - 1){
+        if (offerPageNum < totalpage) {
+            offerPageNum ++;
+            [self offerRequest];
+        }
+    }
 }
 
 /*

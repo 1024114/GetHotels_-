@@ -8,7 +8,9 @@
 
 #import "QuoteViewController.h"
 
-@interface QuoteViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface QuoteViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    BOOL tags;
+}
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;//价格
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;//出发地
 @property (weak, nonatomic) IBOutlet UIButton *endBtn;//目的地
@@ -18,10 +20,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *weightTextField;//行李重量
 @property (weak, nonatomic) IBOutlet UIDatePicker *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-- (IBAction)cancelAction:(UIBarButtonItem *)sender;
-- (IBAction)yesAction:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *departuretimeBtn;//起飞时间
+@property (weak, nonatomic) IBOutlet UIButton *arrivaltime;//到达时间
+- (IBAction)cancelAction:(UIBarButtonItem *)sender;//toolBar取消按钮
+- (IBAction)yesAction:(UIBarButtonItem *)sender;//toolBar确认按钮
+- (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event;//起飞时间按钮
+- (IBAction)arrivaltime:(UIButton *)sender forEvent:(UIEvent *)event;//到达时间按钮
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event;//确认按钮
+- (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event;
+- (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic)NSTimeInterval startTime;
+@property(nonatomic)NSTimeInterval arrTime;
+@property(nonatomic)NSTimeInterval tempTime;
+@property(strong,nonatomic)NSMutableArray *selectOfferArr;
 
 @end
 
@@ -35,6 +47,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dataInitialize{
+    _startTime = [NSDate.date timeIntervalSince1970];
+    _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
 }
 
 #pragma mark - TableView
@@ -72,11 +89,34 @@
 */
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
+    _toolBar.hidden = YES;
+    _pickerView.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
+    _toolBar.hidden = YES;
+    _pickerView.hidden = YES;
+}
+
+- (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
+    _toolBar.hidden = NO;
+    _pickerView.hidden = NO;
+    tags = YES;
+}
+
+- (IBAction)arrivaltime:(UIButton *)sender forEvent:(UIEvent *)event {
+    _toolBar.hidden = NO;
+    _pickerView.hidden = NO;
+    tags = YES;
 }
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
+}
+- (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
+}
+
+- (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
 }
 @end
