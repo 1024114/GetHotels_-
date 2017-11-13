@@ -13,6 +13,7 @@
 		8415B0551FB0402C0081B393 /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0541FB0402C0081B393 /* HotelTableViewCell.m */; };
 		B23A088C1FB43D6F00B2AB62 /* StaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A088B1FB43D6F00B2AB62 /* StaleTableViewCell.m */; };
 		B23A088F1FB43E7500B2AB62 /* StaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A088E1FB43E7500B2AB62 /* StaleModel.m */; };
+		B2444C981FB941C9009A890E /* SelectOfferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2444C971FB941C9009A890E /* SelectOfferModel.m */; };
 		B26D932F1FA80AC3008F6715 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D932E1FA80AC3008F6715 /* AppDelegate.m */; };
 		B26D93401FA80AC3008F6715 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D933F1FA80AC3008F6715 /* main.m */; };
 		B26D934A1FA80AC4008F6715 /* GetHotelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D93491FA80AC4008F6715 /* GetHotelsTests.m */; };
@@ -95,6 +96,8 @@
 		B23A088B1FB43D6F00B2AB62 /* StaleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaleTableViewCell.m; sourceTree = "<group>"; };
 		B23A088D1FB43E7500B2AB62 /* StaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaleModel.h; sourceTree = "<group>"; };
 		B23A088E1FB43E7500B2AB62 /* StaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaleModel.m; sourceTree = "<group>"; };
+		B2444C961FB941C9009A890E /* SelectOfferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectOfferModel.h; sourceTree = "<group>"; };
+		B2444C971FB941C9009A890E /* SelectOfferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectOfferModel.m; sourceTree = "<group>"; };
 		B26D932A1FA80AC3008F6715 /* GetHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26D932D1FA80AC3008F6715 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B26D932E1FA80AC3008F6715 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				B2E48A271FAFF85700725555 /* Order.m */,
 				B23A088D1FB43E7500B2AB62 /* StaleModel.h */,
 				B23A088E1FB43E7500B2AB62 /* StaleModel.m */,
+				B2444C961FB941C9009A890E /* SelectOfferModel.h */,
+				B2444C971FB941C9009A890E /* SelectOfferModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -689,6 +694,7 @@
 				B27E42BD1FB1851800C2093D /* offerModel.m in Sources */,
 				B2E48A661FAFF85800725555 /* GetHotels.xcdatamodeld in Sources */,
 				B2E48A771FAFF85800725555 /* RequestAPI.m in Sources */,
+				B2444C981FB941C9009A890E /* SelectOfferModel.m in Sources */,
 				B2E48AC31FAFFA8400725555 /* base64.m in Sources */,
 				B2E48A811FAFF85800725555 /* BasicEncodingRules.m in Sources */,
 				B2E48AC61FAFFA8400725555 /* MD5DataSigner.m in Sources */,

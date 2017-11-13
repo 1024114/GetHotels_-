@@ -143,7 +143,7 @@
 -(void)staleRequest{
     NSDictionary *para=@{@"type":@0,@"pageNum":@(stalePageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        NSLog(@"responseObject=%@",responseObject);
+        //NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
         staleLast=[result[@"isLastPage"]boolValue];
