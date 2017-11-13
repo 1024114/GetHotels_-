@@ -8,7 +8,7 @@
 
 #import "PostedViewController.h"
 
-@interface PostedViewController ()
+@interface PostedViewController ()<UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *moringTextField;
@@ -80,6 +80,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - PickerView
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return 5;
+}
+
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
 }
