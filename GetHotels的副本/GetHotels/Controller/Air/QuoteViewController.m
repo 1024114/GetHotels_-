@@ -104,7 +104,6 @@
     SelectOfferModel *seModel = _selectOfferArr[indexPath.row];
     NSDictionary *para = @{@"id":@(seModel.ID)};
     [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        [_tableView reloadData];
     } failure:^(NSInteger statusCode, NSError *error) {
     }];
 }
@@ -152,7 +151,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该条航空发布吗?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
             [self deleteRequest:indexPath];
             [_selectOfferArr removeObjectAtIndex:indexPath.row];//删除数据
             //移除tableView中的数据
@@ -163,6 +161,11 @@
         [alert addAction:actionB];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+//修改delete按钮文字为“删除”
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    return @"删除";
 }
 
 /*
