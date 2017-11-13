@@ -209,6 +209,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E29-7H-XC5"/>
                     </view>
+                    <navigationItem key="navigationItem" id="f3Q-mr-KRT"/>
                     <connections>
                         <outlet property="areaTextField" destination="udq-Uw-k9P" id="Vqi-rz-yfS"/>
                         <outlet property="bedTextField" destination="5Pu-xB-fde" id="HJE-KU-c71"/>
@@ -319,7 +320,7 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="postedBtn:" destination="iu5-om-vpc" id="30I-5B-R2c"/>
-                                <segue destination="MP5-FK-zbj" kind="show" id="fQy-HY-hYP"/>
+                                <segue destination="MP5-FK-zbj" kind="show" id="ZS2-M2-cfg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
