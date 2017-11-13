@@ -41,7 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self offerRequest];
+    [self selectOfferRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,11 +56,12 @@
 }
 
 #pragma mark -request
+//发布
 -(void)offerRequest{
     double price=[_priceTextField.text doubleValue];//价格
     NSInteger weight=[_weightTextField.text integerValue];//重量
     NSString *airlines=_airlinesTextField.text;//航空公司
-    NSString *intimestr=_departuretimeBtn.titleLabel.text;//
+    NSString *intimestr=_departuretimeBtn.titleLabel.text;//出发时间
     NSString *aviationcabin=_spaceTextField.text;//舱位
     NSString *outtimestr=_arrivaltime.titleLabel.text;//到达时间
     NSString *departurestr=_startBtn.titleLabel.text;//出发地
@@ -67,8 +69,19 @@
     NSString *flightNostr=_flightTextField.text;//航班
     
     NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airlines,@"aviation_cabin":aviationcabin,@"in_time_str":intimestr,@"out_time_str":outtimestr,@"departure":departurestr,@"destination":destinationstr,@"flight_no":flightNostr};
+    [RequestAPI requestURL:@"/offer_edu" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
+        [_tableView reloadData];
+    } failure:^(NSInteger statusCode, NSError *error) {}];
 }
 
+//查询
+-(void)selectOfferRequest{
+    [RequestAPI requestURL:@"/selectOffer_edu" withParameters:@{@"Id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"shibai");
+    }];
+}
 #pragma mark - TableView
 
 //每组有多少行
