@@ -28,6 +28,7 @@
 #import "PostedViewController.h"
 #import "HotelModel.h"
 #import "SelectOfferModel.h"
+#import "Utilities.h"
 
 
 #endif /* PrefixHeader_pch */

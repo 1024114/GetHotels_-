@@ -34,7 +34,7 @@
 @property(nonatomic)NSTimeInterval arrTime;
 @property(nonatomic)NSTimeInterval tempTime;
 @property(strong,nonatomic)NSMutableArray *selectOfferArr;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;//pickView底部视图
 
 @end
 
@@ -81,6 +81,7 @@
     
     NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airlines,@"aviation_cabin":aviationcabin,@"in_time_str":intimestr,@"out_time_str":outtimestr,@"departure":departurestr,@"destination":destinationstr,@"flight_no":flightNostr};
     [RequestAPI requestURL:@"/offer_edu" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
+        
         [_tableView reloadData];
     } failure:^(NSInteger statusCode, NSError *error) {}];
 }
@@ -180,28 +181,41 @@
 */
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    _toolBar.hidden = YES;
-    _pickerView.hidden = YES;
+    _bottomView.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
-    _toolBar.hidden = YES;
-    _pickerView.hidden = YES;
+    _bottomView.hidden = YES;
 }
 
 - (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
-    _toolBar.hidden = NO;
-    _pickerView.hidden = NO;
-    tags = YES;
+    _bottomView.hidden = NO;
 }
 
 - (IBAction)arrivaltime:(UIButton *)sender forEvent:(UIEvent *)event {
-    _toolBar.hidden = NO;
-    _pickerView.hidden = NO;
-    tags = YES;
+    _bottomView.hidden = NO;
 }
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_endBtn.titleLabel.text isEqualToString:@"选择目的地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写目的地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_priceTextField.text isEqualToString:@"填写价格"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_airlinesTextField.text isEqualToString:@"航空公司"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写航空公司" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    }
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
