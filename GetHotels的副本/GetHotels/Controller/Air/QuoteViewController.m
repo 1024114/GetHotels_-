@@ -34,6 +34,7 @@
 @property(nonatomic)NSTimeInterval arrTime;
 @property(nonatomic)NSTimeInterval tempTime;
 @property(strong,nonatomic)NSMutableArray *selectOfferArr;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @end
 

@@ -793,6 +793,7 @@
                     <connections>
                         <outlet property="airlinesTextField" destination="PTb-8B-zqi" id="k7x-Cd-tXn"/>
                         <outlet property="arrivaltime" destination="N8c-d9-yAS" id="SC1-oJ-auM"/>
+                        <outlet property="bottomView" destination="j0L-Q0-FST" id="VhA-2X-vyH"/>
                         <outlet property="departuretimeBtn" destination="Mrd-r8-rRC" id="YXD-5P-aud"/>
                         <outlet property="endBtn" destination="AKP-Q8-P31" id="Y5I-6t-TIv"/>
                         <outlet property="flightTextField" destination="BCU-Qj-fB0" id="HG6-PU-muC"/>
