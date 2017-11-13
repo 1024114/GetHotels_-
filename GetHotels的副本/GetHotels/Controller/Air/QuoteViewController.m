@@ -54,6 +54,21 @@
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
 }
 
+#pragma mark -request
+-(void)offerRequest{
+    double price=[_priceTextField.text doubleValue];//价格
+    NSInteger weight=[_weightTextField.text integerValue];//重量
+    NSString *airlines=_airlinesTextField.text;//航空公司
+    NSString *intimestr=_departuretimeBtn.titleLabel.text;//
+    NSString *aviationcabin=_spaceTextField.text;//舱位
+    NSString *outtimestr=_arrivaltime.titleLabel.text;//到达时间
+    NSString *departurestr=_startBtn.titleLabel.text;//出发地
+    NSString *destinationstr=_endBtn.titleLabel.text;//目的地
+    NSString *flightNostr=_flightTextField.text;//航班
+    
+    NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airlines,@"aviation_cabin":aviationcabin,@"in_time_str":intimestr,@"out_time_str":outtimestr,@"departure":departurestr,@"destination":destinationstr,@"flight_no":flightNostr};
+}
+
 #pragma mark - TableView
 
 //每组有多少行
