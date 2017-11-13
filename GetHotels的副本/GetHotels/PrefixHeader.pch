@@ -27,6 +27,7 @@
 #import "HotelTableViewCell.h"
 #import "PostedViewController.h"
 #import "HotelModel.h"
+#import "SelectOfferModel.h"
 
 
 #endif /* PrefixHeader_pch */

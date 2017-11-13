@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface QuoteTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *startLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *airlinesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *flightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *weightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *spaceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startLabel;//出发地
+@property (weak, nonatomic) IBOutlet UILabel *endLabel;//目的地
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;//价格
+@property (weak, nonatomic) IBOutlet UILabel *airlinesLabel;//航空公司
+@property (weak, nonatomic) IBOutlet UILabel *flightLabel;//航班
+@property (weak, nonatomic) IBOutlet UILabel *weightLabel;//重量
+@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;//起飞时间
+@property (weak, nonatomic) IBOutlet UILabel *spaceLabel;//舱位
+@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;//到达时间
 
 @end

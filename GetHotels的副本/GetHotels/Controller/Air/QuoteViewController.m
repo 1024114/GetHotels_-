@@ -43,6 +43,8 @@
     [super viewDidLoad];
     [self offerRequest];
     [self selectOfferRequest];
+    [self dataInitialize];
+    [self uiLayout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,9 +52,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+//关于数据的初始化
 -(void)dataInitialize{
     _startTime = [NSDate.date timeIntervalSince1970];
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
+    _selectOfferArr = [NSMutableArray new];
+}
+
+//关于界面的操作
+-(void)uiLayout{
+    //去掉tableView底部多余的线
+    self.tableView.tableFooterView = [UITableView new];
 }
 
 #pragma mark -request
@@ -77,21 +87,50 @@
 //查询
 -(void)selectOfferRequest{
     [RequestAPI requestURL:@"/selectOffer_edu" withParameters:@{@"Id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        
+        NSArray *list=responseObject[@"content"];
+        [_selectOfferArr removeAllObjects];
+        for(NSDictionary *result in list){
+            SelectOfferModel *offer=[[SelectOfferModel alloc]initWithDict:result];
+            [_selectOfferArr addObject:offer];
+        }
+        [_tableView reloadData];
     } failure:^(NSInteger statusCode, NSError *error) {
-        NSLog(@"shibai");
+        NSLog(@"失败");
     }];
 }
+
+//删除
+- (void)deleteRequest:(NSIndexPath *)indexPath {
+    SelectOfferModel *seModel = _selectOfferArr[indexPath.row];
+    NSDictionary *para = @{@"id":@(seModel.ID)};
+    [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    } failure:^(NSInteger statusCode, NSError *error) {
+    }];
+}
+
 #pragma mark - TableView
 
 //每组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return _selectOfferArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     QuoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    //cell.dateLabel.text = @"123";
+    SelectOfferModel *selectOfferModel =_selectOfferArr[indexPath.row];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    NSString *inTime = selectOfferModel.inTimeStr;
+    NSString *outTime = selectOfferModel.outTimeStr;
+    cell.startTimeLabel.text = outTime;
+    cell.endTimeLabel.text = inTime;
+    cell.priceLabel.text = [NSString stringWithFormat:@"¥%ld",(long)selectOfferModel.price];
+    cell.flightLabel.text = selectOfferModel.flightNo;
+    cell.weightLabel.text = [NSString stringWithFormat:@"%ldkg",(long)selectOfferModel.weight];
+    cell.airlinesLabel.text = selectOfferModel.aviationCompany;
+    cell.spaceLabel.text = selectOfferModel.aviationCabin;
+    cell.startLabel.text = selectOfferModel.departure;
+    cell.endLabel.text = selectOfferModel.destination;
     return cell;
 }
 
@@ -104,6 +143,29 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消当前选中行的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//编辑
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView setEditing:NO animated:YES];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该条航空发布吗?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self deleteRequest:indexPath];
+            [_selectOfferArr removeObjectAtIndex:indexPath.row];//删除数据
+            //移除tableView中的数据
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        }];
+        UIAlertAction *actionB = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:actionA];
+        [alert addAction:actionB];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+//修改delete按钮文字为“删除”
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    return @"删除";
 }
 
 /*
