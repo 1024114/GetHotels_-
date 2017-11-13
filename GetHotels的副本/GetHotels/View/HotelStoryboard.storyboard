@@ -14,7 +14,7 @@
         <!--Posted View Controller-->
         <scene sceneID="OkO-sj-J7R">
             <objects>
-                <viewController storyboardIdentifier="postedHotel" id="MP5-FK-zbj" customClass="PostedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postedHotel" hidesBottomBarWhenPushed="YES" id="MP5-FK-zbj" customClass="PostedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="caJ-SX-iI1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (strong, nonatomic) NSArray *array;
 - (IBAction)cancelAction:(UIBarButtonItem *)sender;
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender;
@@ -32,6 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //初始化数组并添加元素
+    [self navigationConfiguration];
+    _array = @[@"周一", @"周二", @"周三", @"周四", @"周五"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,11 +97,17 @@
 
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
+    _pickerView.hidden = YES;
+    _toolBar.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
+    _pickerView.hidden = YES;
+    _toolBar.hidden = YES;
 }
 
 - (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    _pickerView.hidden = NO;
+    _toolBar.hidden = NO;
 }
 @end
