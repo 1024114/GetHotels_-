@@ -70,7 +70,9 @@
 }
 
 -(void)uiLayout{
-    
+    //去掉tableView底部多余的线
+    self.offerTableView.tableFooterView = [UITableView new];
+    self.staleTableView.tableFooterView = [UITableView new];
 }
 
 //设置导航栏的方法

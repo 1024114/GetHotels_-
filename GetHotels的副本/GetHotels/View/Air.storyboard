@@ -483,19 +483,19 @@
                                                     <color key="textColor" red="0.17086362839999999" green="0.4974312186" blue="0.96273082489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:Tba-Eo-2yE:image" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-vH-jOp">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="origin" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-vH-jOp">
                                                     <rect key="frame" x="10" y="51" width="9" height="9"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ASj-vH-jOp" secondAttribute="height" id="ag0-At-Buc"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:Tba-Eo-2yE:image" translatesAutoresizingMaskIntoConstraints="NO" id="Toz-Qo-uig">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="origin" translatesAutoresizingMaskIntoConstraints="NO" id="Toz-Qo-uig">
                                                     <rect key="frame" x="10" y="80" width="9" height="9"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Toz-Qo-uig" secondAttribute="height" id="DXg-lu-3Ev"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:Tba-Eo-2yE:image" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-Uf-Y2n">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="origin" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-Uf-Y2n">
                                                     <rect key="frame" x="10" y="109" width="9" height="9"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="rmz-Uf-Y2n" secondAttribute="height" id="GpL-Bk-7uz"/>
@@ -538,10 +538,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="到达日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFZ-5y-L7x">
-                                                    <rect key="frame" x="142.5" y="74" width="78" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="78" id="xJ7-1K-9Pw"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="142.5" y="74" width="69.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
