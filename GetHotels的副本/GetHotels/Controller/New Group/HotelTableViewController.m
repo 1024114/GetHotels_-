@@ -141,17 +141,23 @@
     HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
     
     HotelModel *hotelModel = _hotelarr[indexPath.section];
-    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:10];//含早","大床","38²"]
-    NSString *str2 = [str1 substringFromIndex:5];//大床","38²"]
-    NSString *str3 = [str1 substringToIndex:2];//含早
-    NSString *str4 = [str2 substringToIndex:2];//大床
-    NSString *str5 = [NSString stringWithFormat:@"描述:%@, %@",str3,str4];
-    NSString *str6 = [str2 substringFromIndex:5];
-    NSString *str7 = [str6 substringToIndex:4];
+//    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:10];//含早","大床","38²"]
+//    NSString *str2 = [str1 substringFromIndex:5];//大床","38²"]
+//    NSString *str3 = [str1 substringToIndex:2];//含早
+//    NSString *str4 = [str2 substringToIndex:2];//大床
+//    NSString *str5 = [NSString stringWithFormat:@"描述:%@, %@",str3,str4];
+//    NSString *str6 = [str2 substringFromIndex:5];
+//    NSString *str7 = [str6 substringToIndex:4];
+    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:1];
+    NSString *str2 = [str1 substringToIndex:str1.length - 1];
+    NSRange range = [str2 rangeOfString:@""];
+    NSString *str3 = [str2 substringToIndex:range.location];
+    
+    NSLog(@"str3 = %@",str3);
+
     //设置细胞的值
-    cell.describeLabel.text = str5;
-    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", str7];
-//    cell.priceLabel.text = hotelModel.hotelPrice;
+    cell.describeLabel.text = str3;
+    //cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", str7];
     
     
     return cell;
