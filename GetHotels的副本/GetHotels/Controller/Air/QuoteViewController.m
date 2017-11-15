@@ -46,6 +46,7 @@
     [self selectOfferRequest];
     [self dataInitialize];
     [self uiLayout];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,12 +59,45 @@
     _startTime = [NSDate.date timeIntervalSince1970];
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
     _selectOfferArr = [NSMutableArray new];
+    tags = nil;
 }
 
 //关于界面的操作
 -(void)uiLayout{
     //去掉tableView底部多余的线
     self.tableView.tableFooterView = [UITableView new];
+}
+
+#pragma  mark - notification
+-(void)checkDepartCity:(NSNotification *)note{
+    NSString *cityStr=note.object;
+    if(![_startBtn.titleLabel.text isEqualToString:cityStr]){
+        [_startBtn setTitle:cityStr forState:UIControlStateNormal];
+    }
+}
+-(void)checkDestinationCity:(NSNotification *)note{
+    NSString *cityStr=note.object;
+    if(![_endBtn.titleLabel.text isEqualToString:cityStr]){
+        [_endBtn setTitle:cityStr forState:UIControlStateNormal];
+    }
+}
+
+//监听到选择城市的通知后做什么
+-(void)resetHome:(NSNotification *)notification{
+    //NSLog(@"监听到了");
+    //拿到通知所携带的参数
+    NSString *city = notification.object;
+    //非空检查
+    if (![[Utilities getUserDefaults:@"UserCity"] isKindOfClass:[NSNull class]]) {
+        if ([Utilities getUserDefaults:@"UserCity"] != nil) {
+            //判断选择到的城市名和当前页面显示的城市名是否一致
+            if (![[Utilities getUserDefaults:@"UserCity"] isEqualToString:city]) {
+                //不但要替换掉城市按钮的标题，而且还要替换单例化全局变量中的值
+                [Utilities removeUserDefaults:@"UserCity"];
+                [Utilities setUserDefaults:@"UserCity" content:city];
+            }
+        }
+    }
 }
 
 #pragma mark -request
@@ -180,12 +214,48 @@
 }
 */
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
+    if ([segue.identifier isEqualToString:@"offerToCity"]) {
+        
+    }
+}
+
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
     _bottomView.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
-    _bottomView.hidden = YES;
+    if(tags){
+        NSDate *pickerDate= _pickerView.date;
+        //datetemp=_datePicker.date;
+        _tempTime = [pickerDate timeIntervalSince1970];
+        if (_startTime > _arrTime) {
+            [Utilities popUpAlertViewWithMsg:@"时间有误" andTitle:@"提示" onView:self onCompletion:^{}];
+            return;
+        }
+        NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
+        [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *startString =[pickerFormatter stringFromDate:pickerDate];
+        [_departuretimeBtn setTitle:startString forState:UIControlStateNormal];
+        _bottomView.hidden=YES;
+    }
+    
+    else{
+        
+        NSDate *pickerDate= _pickerView.date;
+        _tempTime = [pickerDate timeIntervalSince1970];
+        if (_tempTime < _arrTime) {
+            [Utilities popUpAlertViewWithMsg:@"时间有误" andTitle:@"提示" onView:self onCompletion:^{}];
+            return;
+        }
+        NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
+        [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *arrString =[pickerFormatter stringFromDate:pickerDate];
+        [_arrivaltime setTitle:arrString forState:UIControlStateNormal];
+        
+        _bottomView.hidden=YES;
+        
+    }
 }
 
 - (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
@@ -197,31 +267,48 @@
 }
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    if([_priceTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
     } else if([_endBtn.titleLabel.text isEqualToString:@"选择目的地"]){
         [Utilities popUpAlertViewWithMsg:@"请填写目的地" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_priceTextField.text isEqualToString:@"填写价格"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_airlinesTextField.text isEqualToString:@"航空公司"]){
+    } else if([_airlinesTextField.text isEqualToString:@""]){
         [Utilities popUpAlertViewWithMsg:@"请填写航空公司" andTitle:@"提示" onView:self onCompletion:^{}];
     } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
         [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
-    } else if([_startBtn.titleLabel.text isEqualToString:@"选择出发地"]){
-        [Utilities popUpAlertViewWithMsg:@"请填写出发地" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_flightTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写航班" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_spaceTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写舱位" andTitle:@"提示" onView:self onCompletion:^{}];
+     } else if([_departuretimeBtn.titleLabel.text isEqualToString:@"选择起飞日期 时间"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写起飞日期，时间" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_arrivaltime.titleLabel.text isEqualToString:@"选择到达日期 时间"]){
+        [Utilities popUpAlertViewWithMsg:@"请填写到达日期,时间" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else if([_weightTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写行李重量" andTitle:@"提示" onView:self onCompletion:^{}];
+    } else{
+        [self offerRequest];
+        [_startBtn setTitle:@"选择出发地" forState:UIControlStateNormal];
+        [_endBtn setTitle:@"选择目的地" forState:UIControlStateNormal];
+        [_departuretimeBtn setTitle:@"选择出发日期" forState:UIControlStateNormal];
+        [_arrivaltime setTitle:@"选择到达日期" forState:UIControlStateNormal];
+        _spaceTextField.text = @"";
+        _priceTextField.text = @"";
+        _airlinesTextField.text = @"";
+        _flightTextField.text = @"";
+        _weightTextField.text = @"";
+        [self selectOfferRequest];
     }
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
+    NSNumber  *tag=@0;
+    CityTableViewController *cityVC=[Utilities getStoryboardInstance:@"Air" byIdentity:@"city"];
+    [cityVC setTag:tag];
+    UINavigationController *nc=[[UINavigationController alloc]initWithRootViewController:cityVC];
+    [self presentViewController:nc animated:YES completion:^{}];
 }
 
 - (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
+    
 }
 @end
