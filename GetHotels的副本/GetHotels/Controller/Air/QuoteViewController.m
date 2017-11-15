@@ -105,15 +105,15 @@
 -(void)offerRequest{
     double price=[_priceTextField.text doubleValue];//价格
     NSInteger weight=[_weightTextField.text integerValue];//重量
-    NSString *airlines=_airlinesTextField.text;//航空公司
-    NSString *intimestr=_departuretimeBtn.titleLabel.text;//出发时间
-    NSString *aviationcabin=_spaceTextField.text;//舱位
-    NSString *outtimestr=_arrivaltime.titleLabel.text;//到达时间
-    NSString *departurestr=_startBtn.titleLabel.text;//出发地
-    NSString *destinationstr=_endBtn.titleLabel.text;//目的地
+    NSString *airLines=_airlinesTextField.text;//航空公司
+    NSString *inTimeStr=_arrivaltime.titleLabel.text;//到达时间
+    NSString *aviationCabin=_spaceTextField.text;//舱位
+    NSString *outTimeStr=_departuretimeBtn.titleLabel.text;//出发时间
+    NSString *departuRestr=_startBtn.titleLabel.text;//出发地
+    NSString *destinationStr=_endBtn.titleLabel.text;//目的地
     NSString *flightNostr=_flightTextField.text;//航班
     
-    NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airlines,@"aviation_cabin":aviationcabin,@"in_time_str":intimestr,@"out_time_str":outtimestr,@"departure":departurestr,@"destination":destinationstr,@"flight_no":flightNostr};
+    NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airLines,@"aviation_cabin":aviationCabin,@"in_time_str":inTimeStr,@"out_time_str":outTimeStr,@"departure":departuRestr,@"destination":destinationStr,@"flight_no":flightNostr};
     [RequestAPI requestURL:@"/offer_edu" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
         
         [_tableView reloadData];

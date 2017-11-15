@@ -201,9 +201,19 @@
 
 #pragma mark - TableView
 
+//设置多少组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if(tableView == _offerTableView){
+        return _offerArr.count;
+    }
+    else{
+        return _staleArr.count;
+    }
+}
+
 //每组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _offerArr.count;
+    return 1;
 }
 
 //每行长什么样
