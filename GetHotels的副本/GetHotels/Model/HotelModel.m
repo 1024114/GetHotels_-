@@ -20,7 +20,7 @@
         _hotelName = [Utilities nullAndNilCheck:dict[@"hotel_name"] replaceBy:@"未知酒店名"];//酒店名称
         _hotelDescribe = [Utilities nullAndNilCheck:dict[@"hotel_type"] replaceBy:@"未知"];//描述
         //_hotelArea = [Utilities nullAndNilCheck:dict[@"id"] replaceBy:@"0"];//面积
-        _hotelPrice = [Utilities nullAndNilCheck:dict[@"price"] replaceBy:0];//价格
+        _hotelPrice = [[Utilities nullAndNilCheck:dict[@"price"] replaceBy:@"0"] integerValue];//价格
         _hotelImage = [Utilities nullAndNilCheck:dict[@"hotel_img"] replaceBy:@"png2"];//酒店首页图片
         _roomImage = [Utilities nullAndNilCheck:dict[@"room_img"] replaceBy:@"png2"];//房间图片
     }

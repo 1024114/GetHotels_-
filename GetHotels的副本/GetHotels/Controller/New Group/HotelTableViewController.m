@@ -11,8 +11,8 @@
 
 @interface HotelTableViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSInteger hotelPageNum;
-    BOOL hotelLast;
-    NSInteger type;
+    //BOOL hotelLast;
+    //NSInteger type;
     
 }
 - (IBAction)postedBtn:(UIBarButtonItem *)sender;
@@ -111,15 +111,17 @@
     }];
 }
 
-////删除
-//-(void)deleteRequest{
-//    NSDictionary *para=@{@"business_id":@1};
-//    //网络请求
-//    [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-//
-//    } failure:<#^(NSInteger statusCode, NSError *error)failure#>];
-//
-//}
+//删除
+-(void)deleteRequest:(NSIndexPath *)indexPath{
+    HotelModel *hotModel = _array[indexPath.row];
+    NSDictionary *para=@{@"id":@(hotModel.hotelID)};
+    //网络请求
+    [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"删除成功 = %@", responseObject);
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"删除失败:%ld",(long)statusCode);
+    }];
+}
 
 #pragma mark - Table view data source(关于细胞)
 
@@ -141,25 +143,28 @@
     HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
     
     HotelModel *hotelModel = _hotelarr[indexPath.section];
-//    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:10];//含早","大床","38²"]
-//    NSString *str2 = [str1 substringFromIndex:5];//大床","38²"]
-//    NSString *str3 = [str1 substringToIndex:2];//含早
-//    NSString *str4 = [str2 substringToIndex:2];//大床
-//    NSString *str5 = [NSString stringWithFormat:@"描述:%@, %@",str3,str4];
-//    NSString *str6 = [str2 substringFromIndex:5];
-//    NSString *str7 = [str6 substringToIndex:4];
-    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:1];
-    NSString *str2 = [str1 substringToIndex:str1.length - 1];
-    NSRange range = [str2 rangeOfString:@""];
-    NSString *str3 = [str2 substringToIndex:range.location];
-    
-    NSLog(@"str3 = %@",str3);
+    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:2];//去掉最左边的["
+    NSString *str2 = [str1 substringToIndex:str1.length - 2];//去掉最后的"]
+    NSRange range = [str2 rangeOfString:@"\",\""];//定义一个特殊符号 ","
+    NSString *str3 = [str2 substringToIndex:range.location];//截取到特殊符号为止
+    NSString *str4 = [str2 substringFromIndex:range.location];//从特殊符号开始截取
+    NSString *str5 = [str4 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
+    NSString *str6 = [str5 substringToIndex:range.location];//截取到特殊符号为止
+    NSString *str7 = [str5 substringFromIndex:range.location];//从特殊符号开始截取
+    NSString *str8 = [str7 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
+    NSString *str9 = [str8 substringToIndex:range.location];//截取到特殊符号为止
+    NSString *str10 = [str8 substringFromIndex:str8.length - 2];
 
     //设置细胞的值
-    cell.describeLabel.text = str3;
-    //cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", str7];
-    
-    
+    cell.nameLabel.text = hotelModel.hotelName;
+    cell.describeLabel.text = [NSString stringWithFormat:@"描述:%@ %@",str3,str6];
+    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", str10];
+//    //图片远程路径字符串转换为NSURL
+//    NSURL *url = [NSURL URLWithString:hotelModel.roomImage];
+//    //依靠第三方SDwebImage来异步的根据某个图片网址下载图片，并且实现三级缓存到项目中，同时为下载图片的时间周期过程中设置一张默认图
+//    [cell.roomImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"png2"]];
+    cell.priceLabel.text= [NSString stringWithFormat:@"价格:%ld",(long)hotelModel.hotelPrice];
+
     return cell;
 }
 
@@ -176,24 +181,27 @@
 }
 
 
-////编辑
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView setEditing:NO animated:YES];
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该条航空发布吗?" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//            [self deleteRequest:indexPath];
-//            [_hotelarr removeObjectAtIndex:indexPath.row];//删除数据
-//            //移除tableView中的数据
-//            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-//        }];
-//        UIAlertAction *actionB = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:actionA];
-//        [alert addAction:actionB];
-//        [self presentViewController:alert animated:YES completion:nil];
-//    }
-//}
+//编辑
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView setEditing:NO animated:YES];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"你确定删除该条发布?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+            [self deleteRequest:indexPath];
+            [_hotelarr removeObjectAtIndex:indexPath.row];//删除数据
+            //移除tableView中的数据
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+        }];
+        UIAlertAction *actionB = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:actionA];
+        [alert addAction:actionB];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+
 
 //修改delete按钮文字为“删除”
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
