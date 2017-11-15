@@ -66,7 +66,10 @@
 -(void)uiLayout{
     //去掉tableView底部多余的线
     self.tableView.tableFooterView = [UITableView new];
+    [[UIPickerView appearance] setBackgroundColor:[UIColor whiteColor]];
 }
+
+
 
 #pragma  mark - notification
 -(void)checkDepartCity:(NSNotification *)note{
@@ -250,9 +253,8 @@
         }
         NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
         [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        NSString *arrString =[pickerFormatter stringFromDate:pickerDate];
-        [_arrivaltime setTitle:arrString forState:UIControlStateNormal];
-        
+        NSString *endString =[pickerFormatter stringFromDate:pickerDate];
+        [_arrivaltime setTitle:endString forState:UIControlStateNormal];
         _bottomView.hidden=YES;
         
     }
@@ -260,10 +262,12 @@
 
 - (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
     _bottomView.hidden = NO;
+    tags=YES;
 }
 
 - (IBAction)arrivaltime:(UIButton *)sender forEvent:(UIEvent *)event {
     _bottomView.hidden = NO;
+    tags=NO;
 }
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
@@ -301,10 +305,7 @@
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
     NSNumber  *tag=@0;
-    CityTableViewController *cityVC=[Utilities getStoryboardInstance:@"Air" byIdentity:@"city"];
-    [cityVC setTag:tag];
-    UINavigationController *nc=[[UINavigationController alloc]initWithRootViewController:cityVC];
-    [self presentViewController:nc animated:YES completion:^{}];
+    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
 }
 
 - (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {

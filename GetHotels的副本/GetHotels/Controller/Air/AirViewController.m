@@ -47,6 +47,7 @@
     [self segmentedControlset];
     [self offerRequest];
     [self staleRequest];
+    [self createRefeshControll];
     
     
     
@@ -73,6 +74,39 @@
     //去掉tableView底部多余的线
     self.offerTableView.tableFooterView = [UITableView new];
     self.staleTableView.tableFooterView = [UITableView new];
+}
+
+#pragma mark - otherSetting
+//创建刷新指示器
+-(void)createRefeshControll{
+    //创建刷新指示器
+    UIRefreshControl *ref = [UIRefreshControl new];
+    //给刷新指示器设置tag
+    ref.tag = 101;
+    //刷新开始的时候做什么（给刷新指示器添加事件）
+    [ref addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    //将这个刷新指示器添加给tableView(刷新指示器会添加在tableView的上方居中的位置)
+    [_offerTableView addSubview:ref];
+    [_staleTableView addSubview:ref];
+}
+
+//刷新开始时做什么
+-(void)refresh{
+    //NSLog(@"开始刷新");
+    //刷新的实质是：将重新请求第一页的数据
+    offerPageNum = 1;
+    stalePageNum = 1;
+    [self offerRequest];
+    [self staleRequest];
+    
+}
+
+//网络请求成功或失败后停止掉刷新动画
+-(void)end{
+    //通过tag拿到对应的控件
+    UIRefreshControl *ref = (UIRefreshControl *)[_offerTableView viewWithTag:101];
+    //停止刷新
+    [ref endRefreshing];
 }
 
 //设置导航栏的方法
@@ -124,7 +158,8 @@
 -(void)offerRequest{
     NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        //NSLog(@"responseObject=%@",responseObject);
+        [self end];
+        NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
         offerLast=[result[@"isLastPage"]boolValue];
@@ -138,6 +173,7 @@
             [_offerTableView reloadData];
         }
      failure:^(NSInteger statusCode, NSError *error) {
+         [self end];
         NSLog(@"失败");
     }];
 }
