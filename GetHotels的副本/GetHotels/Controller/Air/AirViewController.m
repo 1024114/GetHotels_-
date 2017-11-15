@@ -31,7 +31,9 @@
 @property (strong, nonatomic) NSMutableArray *offerArr;
 @property (strong, nonatomic) NSMutableArray *staleerarr;
 @property (strong, nonatomic) NSMutableArray *staleArr;
-@property(strong,nonatomic)UIActivityIndicatorView *avi;
+@property (strong, nonatomic)UIActivityIndicatorView *avi;
+@property (strong, nonatomic)UIRefreshControl *tag;
+@property (strong, nonatomic)UIRefreshControl *tag2;
 
 @end
 
@@ -39,9 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //导航栏
     [self navigationConfiguration];
-    //界面设置
     [self uiLayout];
     [self dataInitialize];
     [self segmentedControlset];
@@ -80,34 +80,41 @@
 //创建刷新指示器
 -(void)createRefeshControll{
     //创建刷新指示器
-    UIRefreshControl *ref = [UIRefreshControl new];
-    //给刷新指示器设置tag
-    ref.tag = 101;
+    _tag = [UIRefreshControl new];
     //刷新开始的时候做什么（给刷新指示器添加事件）
-    [ref addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [_tag addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     //将这个刷新指示器添加给tableView(刷新指示器会添加在tableView的上方居中的位置)
-    [_offerTableView addSubview:ref];
-    [_staleTableView addSubview:ref];
+    [_offerTableView addSubview:_tag];
+    //创建刷新指示器
+    _tag2 = [UIRefreshControl new];
+    //刷新开始的时候做什么（给刷新指示器添加事件）
+    [_tag2 addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [_staleTableView addSubview:_tag2];
+}
+//刷新开始时做什么
+-(void)refresh{
+    offerPageNum = 1;
+    [self offerRequest];
+    
 }
 
 //刷新开始时做什么
--(void)refresh{
-    //NSLog(@"开始刷新");
-    //刷新的实质是：将重新请求第一页的数据
-    offerPageNum = 1;
+-(void)refresh2{
     stalePageNum = 1;
-    [self offerRequest];
     [self staleRequest];
-    
 }
 
 //网络请求成功或失败后停止掉刷新动画
 -(void)end{
-    //通过tag拿到对应的控件
-    UIRefreshControl *ref = (UIRefreshControl *)[_offerTableView viewWithTag:101];
     //停止刷新
-    [ref endRefreshing];
+    [_tag endRefreshing];
 }
+
+-(void)end2{
+    //停止刷新
+    [_tag2 endRefreshing];
+}
+
 
 //设置导航栏的方法
 - (void)navigationConfiguration{
@@ -181,6 +188,7 @@
 -(void)staleRequest{
     NSDictionary *para=@{@"type":@0,@"pageNum":@(stalePageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [self end2];
         //NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
@@ -195,8 +203,8 @@
         [_staleTableView reloadData];
     }
        failure:^(NSInteger statusCode, NSError *error) {
-                       NSLog(@"失败");
-                   }];
+       [self end2];
+       }];
 }
 
 #pragma mark - TableView
