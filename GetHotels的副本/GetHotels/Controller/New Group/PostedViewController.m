@@ -7,8 +7,11 @@
 //
 
 #import "PostedViewController.h"
+#import "Utilities.h"
 
-@interface PostedViewController ()<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PostedViewController ()<UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
+    UIImagePickerController *imagePickerController;
+}
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *moringTextField;
@@ -64,16 +67,26 @@
     self.navigationController.navigationBar.hidden = NO;
     //配置导航栏上的item的风格颜色（如果是文字则文字变成白色，如果是图片则图片的透明部分变成白色）
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-//    //为导航条左上角创建一个按钮
+    //为导航条左上角创建一个按钮
 //    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(backAction)];
 //    self.navigationItem.leftBarButtonItem = left;
-//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(Issue)];
-//    self.navigationItem.rightBarButtonItem = right;
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(Issue)];
+    self.navigationItem.rightBarButtonItem = right;
     //自定义返回按钮
     //self.navigationController.navigationItem.leftBarButtonItem = ;
 }
 
+- (void)Issue{
 
+    if([_priceTextField.text  isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
+    }else if ([_areaTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请选择房间类型" andTitle:@"提示" onView:self onCompletion:^{}];
+    }else if(_priceTextField.text.length >= 5){
+        [Utilities popUpAlertViewWithMsg:@"房间价格不合理，请重新填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
+    }else{
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -84,6 +97,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark - Request
+- (void)issueRequest{
+    
+}
 
 #pragma mark - PickerView
 
