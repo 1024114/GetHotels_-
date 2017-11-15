@@ -29,6 +29,7 @@
 #import "HotelModel.h"
 #import "SelectOfferModel.h"
 #import "Utilities.h"
+#import "CityTableViewController.h"
 
 
 #endif /* PrefixHeader_pch */

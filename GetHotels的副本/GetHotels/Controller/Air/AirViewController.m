@@ -211,7 +211,7 @@
 
 //细胞的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150.f;
+    return 120.f;
 }
 
 //选中行时调用

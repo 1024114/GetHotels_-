@@ -59,12 +59,27 @@
     _startTime = [NSDate.date timeIntervalSince1970];
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
     _selectOfferArr = [NSMutableArray new];
+    tags = nil;
 }
 
 //关于界面的操作
 -(void)uiLayout{
     //去掉tableView底部多余的线
     self.tableView.tableFooterView = [UITableView new];
+}
+
+#pragma  mark - notification
+-(void)checkDepartCity:(NSNotification *)note{
+    NSString *cityStr=note.object;
+    if(![_startBtn.titleLabel.text isEqualToString:cityStr]){
+        [_startBtn setTitle:cityStr forState:UIControlStateNormal];
+    }
+}
+-(void)checkDestinationCity:(NSNotification *)note{
+    NSString *cityStr=note.object;
+    if(![_endBtn.titleLabel.text isEqualToString:cityStr]){
+        [_endBtn setTitle:cityStr forState:UIControlStateNormal];
+    }
 }
 
 //监听到选择城市的通知后做什么
@@ -199,12 +214,48 @@
 }
 */
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
+    if ([segue.identifier isEqualToString:@"offerToCity"]) {
+        
+    }
+}
+
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
     _bottomView.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
-    _bottomView.hidden = YES;
+    if(tags){
+        NSDate *pickerDate= _pickerView.date;
+        //datetemp=_datePicker.date;
+        _tempTime = [pickerDate timeIntervalSince1970];
+        if (_startTime > _arrTime) {
+            [Utilities popUpAlertViewWithMsg:@"时间有误" andTitle:@"提示" onView:self onCompletion:^{}];
+            return;
+        }
+        NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
+        [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *startString =[pickerFormatter stringFromDate:pickerDate];
+        [_departuretimeBtn setTitle:startString forState:UIControlStateNormal];
+        _bottomView.hidden=YES;
+    }
+    
+    else{
+        
+        NSDate *pickerDate= _pickerView.date;
+        _tempTime = [pickerDate timeIntervalSince1970];
+        if (_tempTime < _arrTime) {
+            [Utilities popUpAlertViewWithMsg:@"时间有误" andTitle:@"提示" onView:self onCompletion:^{}];
+            return;
+        }
+        NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
+        [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *arrString =[pickerFormatter stringFromDate:pickerDate];
+        [_arrivaltime setTitle:arrString forState:UIControlStateNormal];
+        
+        _bottomView.hidden=YES;
+        
+    }
 }
 
 - (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
@@ -249,14 +300,15 @@
     }
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
-    //监听选择城市后的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetHome:) name:@"ResetHome" object:nil];
+    NSNumber  *tag=@0;
+    CityTableViewController *cityVC=[Utilities getStoryboardInstance:@"Air" byIdentity:@"city"];
+    [cityVC setTag:tag];
+    UINavigationController *nc=[[UINavigationController alloc]initWithRootViewController:cityVC];
+    [self presentViewController:nc animated:YES completion:^{}];
 }
 
 - (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
-    //监听选择城市后的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetHome:) name:@"ResetHome" object:nil];
+    
 }
 @end
