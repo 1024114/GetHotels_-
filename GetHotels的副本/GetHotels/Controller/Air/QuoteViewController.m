@@ -10,6 +10,7 @@
 
 @interface QuoteViewController ()<UITableViewDelegate,UITableViewDataSource>{
     BOOL tags;
+    BOOL tagsCity;
 }
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;//价格
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;//出发地
@@ -46,7 +47,8 @@
     [self selectOfferRequest];
     [self dataInitialize];
     [self uiLayout];
-    
+    //监听选择城市后的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetHome:) name:@"ResetHome" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +62,7 @@
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
     _selectOfferArr = [NSMutableArray new];
     tags = nil;
+    tagsCity = nil;
 }
 
 //关于界面的操作
@@ -87,19 +90,13 @@
 
 //监听到选择城市的通知后做什么
 -(void)resetHome:(NSNotification *)notification{
-    //NSLog(@"监听到了");
+    NSLog(@"监听到了");
     //拿到通知所携带的参数
     NSString *city = notification.object;
-    //非空检查
-    if (![[Utilities getUserDefaults:@"UserCity"] isKindOfClass:[NSNull class]]) {
-        if ([Utilities getUserDefaults:@"UserCity"] != nil) {
-            //判断选择到的城市名和当前页面显示的城市名是否一致
-            if (![[Utilities getUserDefaults:@"UserCity"] isEqualToString:city]) {
-                //不但要替换掉城市按钮的标题，而且还要替换单例化全局变量中的值
-                [Utilities removeUserDefaults:@"UserCity"];
-                [Utilities setUserDefaults:@"UserCity" content:city];
-            }
-        }
+        if (tagsCity) {
+            [_endBtn setTitle:city forState:UIControlStateNormal];
+        } else{
+            [_startBtn setTitle:city forState:UIControlStateNormal];
     }
 }
 
@@ -304,11 +301,12 @@
     }
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    NSNumber  *tag=@0;
+    tagsCity = YES;
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
 }
 
 - (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    tagsCity = NO;
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
     
 }

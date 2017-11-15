@@ -140,10 +140,7 @@
     //发送通知
     [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:NO];
     //返回上个页面
-    CityTableViewController *cityVC=[Utilities getStoryboardInstance:@"Air" byIdentity:@"city"];
-    [cityVC setTag:_tag];
-    UINavigationController *nc=[[UINavigationController alloc]initWithRootViewController:cityVC];
-    [self presentViewController:nc animated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
