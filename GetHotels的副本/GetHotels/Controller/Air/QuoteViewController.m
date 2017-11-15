@@ -10,6 +10,7 @@
 
 @interface QuoteViewController ()<UITableViewDelegate,UITableViewDataSource>{
     BOOL tags;
+    BOOL tagsCity;
 }
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;//价格
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;//出发地
@@ -46,7 +47,8 @@
     [self selectOfferRequest];
     [self dataInitialize];
     [self uiLayout];
-    
+    //监听选择城市后的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetHome:) name:@"ResetHome" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,13 +62,17 @@
     _arrTime = [NSDate.dateTomorrow timeIntervalSince1970];
     _selectOfferArr = [NSMutableArray new];
     tags = nil;
+    tagsCity = nil;
 }
 
 //关于界面的操作
 -(void)uiLayout{
     //去掉tableView底部多余的线
     self.tableView.tableFooterView = [UITableView new];
+    [[UIPickerView appearance] setBackgroundColor:[UIColor whiteColor]];
 }
+
+
 
 #pragma  mark - notification
 -(void)checkDepartCity:(NSNotification *)note{
@@ -84,19 +90,13 @@
 
 //监听到选择城市的通知后做什么
 -(void)resetHome:(NSNotification *)notification{
-    //NSLog(@"监听到了");
+    NSLog(@"监听到了");
     //拿到通知所携带的参数
     NSString *city = notification.object;
-    //非空检查
-    if (![[Utilities getUserDefaults:@"UserCity"] isKindOfClass:[NSNull class]]) {
-        if ([Utilities getUserDefaults:@"UserCity"] != nil) {
-            //判断选择到的城市名和当前页面显示的城市名是否一致
-            if (![[Utilities getUserDefaults:@"UserCity"] isEqualToString:city]) {
-                //不但要替换掉城市按钮的标题，而且还要替换单例化全局变量中的值
-                [Utilities removeUserDefaults:@"UserCity"];
-                [Utilities setUserDefaults:@"UserCity" content:city];
-            }
-        }
+        if (tagsCity) {
+            [_endBtn setTitle:city forState:UIControlStateNormal];
+        } else{
+            [_startBtn setTitle:city forState:UIControlStateNormal];
     }
 }
 
@@ -105,15 +105,15 @@
 -(void)offerRequest{
     double price=[_priceTextField.text doubleValue];//价格
     NSInteger weight=[_weightTextField.text integerValue];//重量
-    NSString *airlines=_airlinesTextField.text;//航空公司
-    NSString *intimestr=_departuretimeBtn.titleLabel.text;//出发时间
-    NSString *aviationcabin=_spaceTextField.text;//舱位
-    NSString *outtimestr=_arrivaltime.titleLabel.text;//到达时间
-    NSString *departurestr=_startBtn.titleLabel.text;//出发地
-    NSString *destinationstr=_endBtn.titleLabel.text;//目的地
+    NSString *airLines=_airlinesTextField.text;//航空公司
+    NSString *inTimeStr=_arrivaltime.titleLabel.text;//到达时间
+    NSString *aviationCabin=_spaceTextField.text;//舱位
+    NSString *outTimeStr=_departuretimeBtn.titleLabel.text;//出发时间
+    NSString *departuRestr=_startBtn.titleLabel.text;//出发地
+    NSString *destinationStr=_endBtn.titleLabel.text;//目的地
     NSString *flightNostr=_flightTextField.text;//航班
     
-    NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airlines,@"aviation_cabin":aviationcabin,@"in_time_str":intimestr,@"out_time_str":outtimestr,@"departure":departurestr,@"destination":destinationstr,@"flight_no":flightNostr};
+    NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airLines,@"aviation_cabin":aviationCabin,@"in_time_str":inTimeStr,@"out_time_str":outTimeStr,@"departure":departuRestr,@"destination":destinationStr,@"flight_no":flightNostr};
     [RequestAPI requestURL:@"/offer_edu" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
         
         [_tableView reloadData];
@@ -250,9 +250,8 @@
         }
         NSDateFormatter *pickerFormatter =[[NSDateFormatter alloc ]init];
         [pickerFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        NSString *arrString =[pickerFormatter stringFromDate:pickerDate];
-        [_arrivaltime setTitle:arrString forState:UIControlStateNormal];
-        
+        NSString *endString =[pickerFormatter stringFromDate:pickerDate];
+        [_arrivaltime setTitle:endString forState:UIControlStateNormal];
         _bottomView.hidden=YES;
         
     }
@@ -260,10 +259,12 @@
 
 - (IBAction)departuretime:(UIButton *)sender forEvent:(UIEvent *)event {
     _bottomView.hidden = NO;
+    tags=YES;
 }
 
 - (IBAction)arrivaltime:(UIButton *)sender forEvent:(UIEvent *)event {
     _bottomView.hidden = NO;
+    tags=NO;
 }
 
 - (IBAction)confirmAction:(UIButton *)sender forEvent:(UIEvent *)event {
@@ -300,14 +301,12 @@
     }
 }
 - (IBAction)endAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    NSNumber  *tag=@0;
-    CityTableViewController *cityVC=[Utilities getStoryboardInstance:@"Air" byIdentity:@"city"];
-    [cityVC setTag:tag];
-    UINavigationController *nc=[[UINavigationController alloc]initWithRootViewController:cityVC];
-    [self presentViewController:nc animated:YES completion:^{}];
+    tagsCity = YES;
+    [self performSegueWithIdentifier:@"offerToCity" sender:nil];
 }
 
 - (IBAction)startAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    tagsCity = NO;
     [self performSegueWithIdentifier:@"offerToCity" sender:nil];
     
 }
