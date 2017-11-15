@@ -128,14 +128,14 @@
 //多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+    return _hotelarr.count;
 }
 
 
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return _hotelarr.count;
+    return 1;
 }
 
 //每行长什么样

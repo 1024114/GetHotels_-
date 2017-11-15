@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (strong, nonatomic) NSArray *array;
+@property (strong, nonatomic) NSMutableArray *hotelNamePickerArr;
+@property (strong, nonatomic) NSString *imgUrl;
 - (IBAction)cancelAction:(UIBarButtonItem *)sender;
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender;
@@ -36,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _hotelNamePickerArr = [NSMutableArray new];
     //初始化数组并添加元素
     [self navigationConfiguration];
     _array = @[@"周一", @"周二", @"周三", @"周四", @"周五"];
@@ -81,10 +84,13 @@
     if([_priceTextField.text  isEqualToString:@""]){
         [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
     }else if ([_areaTextField.text isEqualToString:@""]){
-        [Utilities popUpAlertViewWithMsg:@"请选择房间类型" andTitle:@"提示" onView:self onCompletion:^{}];
+        [Utilities popUpAlertViewWithMsg:@"请选择房间面积" andTitle:@"提示" onView:self onCompletion:^{}];
     }else if(_priceTextField.text.length >= 5){
         [Utilities popUpAlertViewWithMsg:@"房间价格不合理，请重新填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
     }else{
+
+        //返回上个页面
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -99,9 +105,40 @@
 */
 
 
+
 #pragma mark - Request
+//发布 的网络请求
 - (void)issueRequest{
+    NSInteger row = [_pickerView selectedRowInComponent:0];
+    NSString *title= _hotelNamePickerArr[row];
+    [_selectBtn setTitle:title forState:UIControlStateNormal];
+    _imgUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505461689&di=9c9704fab9db8eccb77e1e1360fdbef4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.redocn.com%2Ftupian%2F20150312%2Fhaixinghezhenzhubeikeshiliangbeijing_3937174.jpg";
+    NSDictionary *para =@{@"business_id":@2,@"hotel_name":title ,@"hotel_type":_areaTextField.text,@"room_imgs":_imgUrl,@"price":_priceTextField.text};
     
+    [RequestAPI requestURL:@"/addHotel" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
+        if ([responseObject[@"result"]integerValue] == 1){
+            NSLog(@"issue:%@",responseObject[@"result"]);
+        }
+        
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"%ld", (long)statusCode);
+    }];
+    
+}
+
+
+#pragma mark - Hiddenkeyboard
+//Return键是否能被点击 返回YES表示能点，返回NO表示不能被点
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //收起键盘
+    //[textField resignFirstResponder];
+    [self.view endEditing:YES];
+    return YES;
+}
+
+//点击键盘以外的部分收起键盘
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - PickerView
