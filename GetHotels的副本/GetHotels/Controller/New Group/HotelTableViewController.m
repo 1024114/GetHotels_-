@@ -152,7 +152,7 @@
     NSString *str6 = [str5 substringToIndex:range.location];//截取到特殊符号为止
     NSString *str7 = [str5 substringFromIndex:range.location];//从特殊符号开始截取
     NSString *str8 = [str7 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
-    NSString *str9 = [str8 substringToIndex:range.location];//截取到特殊符号为止
+//  NSString *str9 = [str8 substringToIndex:range.location];//截取到特殊符号为止
     NSString *str10 = [str8 substringFromIndex:str8.length - 2];
 
     //设置细胞的值

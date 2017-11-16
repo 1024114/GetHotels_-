@@ -13,16 +13,16 @@
     UIImagePickerController *imagePickerController;
 }
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
-@property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *moringTextField;
-@property (weak, nonatomic) IBOutlet UITextField *bedTextField;
-@property (weak, nonatomic) IBOutlet UITextField *areaTextField;
-@property (weak, nonatomic) IBOutlet UITextField *priceTextField;
-@property (weak, nonatomic) IBOutlet UITextField *weekendsTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
+@property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;//房间名文本框
+@property (weak, nonatomic) IBOutlet UITextField *moringTextField;//是否含早
+@property (weak, nonatomic) IBOutlet UITextField *bedTextField;//床型
+@property (weak, nonatomic) IBOutlet UITextField *areaTextField;//面积
+@property (weak, nonatomic) IBOutlet UITextField *priceTextField;//价格
+@property (weak, nonatomic) IBOutlet UITextField *weekendsTextField;//周末节假日
+@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;//图片
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (strong, nonatomic) NSArray *array;
+@property (strong, nonatomic) NSMutableArray *pickerArray;
 @property (strong, nonatomic) NSMutableArray *hotelNamePickerArr;
 @property (strong, nonatomic) NSString *imgUrl;
 - (IBAction)cancelAction:(UIBarButtonItem *)sender;
@@ -38,10 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _pickerArray = [NSMutableArray new];
     _hotelNamePickerArr = [NSMutableArray new];
-    //初始化数组并添加元素
     [self navigationConfiguration];
-    _array = @[@"周一", @"周二", @"周三", @"周四", @"周五"];
+    [self searchRequset];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,16 +81,32 @@
 
 - (void)Issue{
 
-    if([_priceTextField.text  isEqualToString:@""]){
-        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
+    if([_roomNameTextField.text  isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写房间名" andTitle:@"提示" onView:self onCompletion:^{}];
     }else if ([_areaTextField.text isEqualToString:@""]){
         [Utilities popUpAlertViewWithMsg:@"请选择房间面积" andTitle:@"提示" onView:self onCompletion:^{}];
+    }else if([_priceTextField.text isEqualToString:@""]){
+        [Utilities popUpAlertViewWithMsg:@"请填写价格" andTitle:@"提示" onView:self
+            onCompletion:^{}];
     }else if(_priceTextField.text.length >= 5){
         [Utilities popUpAlertViewWithMsg:@"房间价格不合理，请重新填写价格" andTitle:@"提示" onView:self onCompletion:^{}];
     }else{
-
-        //返回上个页面
-        [self.navigationController popViewControllerAnimated:YES];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定发布" preferredStyle:UIAlertControllerStyleAlert];
+        //创建提示框的确认按钮
+        UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //返回上个页面
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        //创建提示框的取消按钮
+        UIAlertAction *actionB = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        //将按钮添加到提示框中 （多个按钮从左到右，从上到下，如果按钮的风格是UIAlertActionStyleCancel 是中是最左或者最下）
+        [alert addAction:actionA];
+        [alert addAction:actionB];
+        
+        //将提示框显示出来
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -107,6 +123,26 @@
 
 
 #pragma mark - Request
+//获取酒店名称列表
+- (void)searchRequset{
+    [RequestAPI requestURL:@"/searchHotelName" withParameters:nil andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        
+        if ([responseObject[@"result"]integerValue] == 1) {
+            _pickerArray = responseObject[@"content"];
+            for (NSDictionary *dict in _pickerArray) {
+                NSString *str = dict[@"hotel_name"];
+                [_hotelNamePickerArr addObject:str];
+            }
+            [_pickerView reloadAllComponents];
+
+            NSLog(@"列表 = %@", _pickerArray);
+        }else{
+            [Utilities popUpAlertViewWithMsg:@"网络错误，请稍后再试" andTitle:@"提示" onView:self onCompletion:^{}];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"%ld",(long)statusCode);
+    }];
+}
 //发布 的网络请求
 - (void)issueRequest{
     NSInteger row = [_pickerView selectedRowInComponent:0];
@@ -119,7 +155,7 @@
         if ([responseObject[@"result"]integerValue] == 1){
             NSLog(@"issue:%@",responseObject[@"result"]);
         }
-        
+            NSLog(@"title = %@", title);
     } failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"%ld", (long)statusCode);
     }];
