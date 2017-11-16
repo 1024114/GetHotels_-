@@ -31,6 +31,17 @@
                                     <constraint firstAttribute="height" constant="40" id="dCF-Nh-8KZ"/>
                                 </constraints>
                                 <state key="normal" title="请选择酒店"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                        <color key="value" red="0.98654519944653407" green="0.99798031346202309" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="selectAction:forEvent:" destination="MP5-FK-zbj" eventType="touchUpInside" id="Lgx-rF-diY"/>
                                 </connections>
