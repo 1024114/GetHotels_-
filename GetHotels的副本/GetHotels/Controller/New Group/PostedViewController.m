@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *pickerArray;
 @property (strong, nonatomic) NSMutableArray *hotelNamePickerArr;
 @property (strong, nonatomic) NSString *imgUrl;
+@property (strong, nonatomic) UIActivityIndicatorView *avi;
 - (IBAction)cancelAction:(UIBarButtonItem *)sender;
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender;
@@ -39,9 +40,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _pickerArray = [NSMutableArray new];
+    [_pickerView selectRow:1 inComponent:0 animated:YES];
+    
+    [_pickerView reloadComponent:0];
     _hotelNamePickerArr = [NSMutableArray new];
     [self navigationConfiguration];
-    [self searchRequset];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,26 +126,7 @@
 
 
 #pragma mark - Request
-//获取酒店名称列表
-- (void)searchRequset{
-    [RequestAPI requestURL:@"/searchHotelName" withParameters:nil andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        
-        if ([responseObject[@"result"]integerValue] == 1) {
-            _pickerArray = responseObject[@"content"];
-            for (NSDictionary *dict in _pickerArray) {
-                NSString *str = dict[@"hotel_name"];
-                [_hotelNamePickerArr addObject:str];
-            }
-            [_pickerView reloadAllComponents];
 
-            NSLog(@"列表 = %@", _pickerArray);
-        }else{
-            [Utilities popUpAlertViewWithMsg:@"网络错误，请稍后再试" andTitle:@"提示" onView:self onCompletion:^{}];
-        }
-    } failure:^(NSInteger statusCode, NSError *error) {
-        NSLog(@"%ld",(long)statusCode);
-    }];
-}
 //发布 的网络请求
 - (void)issueRequest{
     NSInteger row = [_pickerView selectedRowInComponent:0];
@@ -150,7 +134,7 @@
     [_selectBtn setTitle:title forState:UIControlStateNormal];
     _imgUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505461689&di=9c9704fab9db8eccb77e1e1360fdbef4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.redocn.com%2Ftupian%2F20150312%2Fhaixinghezhenzhubeikeshiliangbeijing_3937174.jpg";
     NSDictionary *para =@{@"business_id":@2,@"hotel_name":title ,@"hotel_type":_areaTextField.text,@"room_imgs":_imgUrl,@"price":_priceTextField.text};
-    
+
     [RequestAPI requestURL:@"/addHotel" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
         if ([responseObject[@"result"]integerValue] == 1){
             NSLog(@"issue:%@",responseObject[@"result"]);
@@ -159,6 +143,75 @@
     } failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"%ld", (long)statusCode);
     }];
+
+}
+
+//获取酒店名称列表
+- (void)searchRequset{
+    [RequestAPI requestURL:@"/searchHotelName" withParameters:nil andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        
+        [_avi stopAnimating];
+        
+        if ([responseObject[@"result"]integerValue] == 1) {
+            _pickerArray = responseObject[@"content"];
+            for (NSDictionary *dict in _pickerArray) {
+                NSString *str = dict[@"hotel_name"];
+                [_hotelNamePickerArr addObject:str];
+                NSLog(@"_hotelNamePickerArr = %@", _hotelNamePickerArr);
+            }
+            [_pickerView reloadAllComponents];
+        }else{
+            [Utilities popUpAlertViewWithMsg:@"网络错误，请稍后再试" andTitle:@"提示" onView:self onCompletion:^{}];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        NSLog(@"%ld",(long)statusCode);
+    }];
+}
+
+- (void)initializeData{
+    _avi = [Utilities getCoverOnView:self.view];
+    [self searchRequset];
+}
+
+#pragma mark - PickerView
+//多少列(组)
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+//每列多少行
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return _hotelNamePickerArr.count;
+}
+
+//设置每行的标题
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return _hotelNamePickerArr[row];
+
+}
+
+- (IBAction)cancelAction:(UIBarButtonItem *)sender {
+    _pickerView.hidden = YES;
+    _toolBar.hidden = YES;
+}
+
+- (IBAction)yesAction:(UIBarButtonItem *)sender {
+    //拿到当前选中某一列的行号
+    NSInteger row = [_pickerView selectedRowInComponent:0];
+    //通过上述行号到数组中拿数据
+    NSString *title = [NSString stringWithFormat:@"%@",_hotelNamePickerArr[row]];
+    //将拿到的数据显示在按钮上面
+    [_selectBtn setTitle:title forState:UIControlStateNormal];
+    
+    _pickerView.hidden = YES;
+    _toolBar.hidden = YES;
+    
+}
+
+- (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    [self searchRequset];
+    _pickerView.hidden = NO;
+    _toolBar.hidden = NO;
+    [self initializeData];
     
 }
 
@@ -177,29 +230,4 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - PickerView
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return 5;
-}
-
-
-- (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    _pickerView.hidden = YES;
-    _toolBar.hidden = YES;
-}
-
-- (IBAction)yesAction:(UIBarButtonItem *)sender {
-    _pickerView.hidden = YES;
-    _toolBar.hidden = YES;
-}
-
-- (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    _pickerView.hidden = NO;
-    _toolBar.hidden = NO;
-}
 @end

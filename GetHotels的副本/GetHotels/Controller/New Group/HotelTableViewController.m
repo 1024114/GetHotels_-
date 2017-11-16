@@ -91,7 +91,6 @@
             //解析数据
             NSArray *list = responseObject[@"content"];
             //遍历上述数组拿到每条数据（每个字典）
-            
             for(NSDictionary *dict in list){
                 //将遍历得来的字典转换成model
                 HotelModel *hotelModel=[[HotelModel alloc]initWithDict:dict];
@@ -158,12 +157,12 @@
     //设置细胞的值
     cell.nameLabel.text = hotelModel.hotelName;
     cell.describeLabel.text = [NSString stringWithFormat:@"描述:%@ %@",str3,str6];
-    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", str10];
+    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@㎡", str10];
 //    //图片远程路径字符串转换为NSURL
 //    NSURL *url = [NSURL URLWithString:hotelModel.roomImage];
 //    //依靠第三方SDwebImage来异步的根据某个图片网址下载图片，并且实现三级缓存到项目中，同时为下载图片的时间周期过程中设置一张默认图
 //    [cell.roomImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"png2"]];
-    cell.priceLabel.text= [NSString stringWithFormat:@"价格:%ld",(long)hotelModel.hotelPrice];
+    cell.priceLabel.text= [NSString stringWithFormat:@"价格:%ld¥",(long)hotelModel.hotelPrice];
 
     return cell;
 }
