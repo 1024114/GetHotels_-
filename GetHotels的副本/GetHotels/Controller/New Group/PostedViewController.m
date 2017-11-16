@@ -12,6 +12,8 @@
 @interface PostedViewController ()<UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
     UIImagePickerController *imagePickerController;
 }
+
+@property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;//房间名文本框
 @property (weak, nonatomic) IBOutlet UITextField *moringTextField;//是否含早
@@ -84,7 +86,9 @@
 
 - (void)Issue{
 
-    if([_roomNameTextField.text  isEqualToString:@""]){
+    if ([_selectBtn.titleLabel.text isEqualToString:@"请选择酒店"]) {
+        [Utilities popUpAlertViewWithMsg:@"请选择酒店" andTitle:@"提示" onView:self onCompletion:^{}];
+    }else if([_roomNameTextField.text  isEqualToString:@""]){
         [Utilities popUpAlertViewWithMsg:@"请填写房间名" andTitle:@"提示" onView:self onCompletion:^{}];
     }else if ([_areaTextField.text isEqualToString:@""]){
         [Utilities popUpAlertViewWithMsg:@"请选择房间面积" andTitle:@"提示" onView:self onCompletion:^{}];
@@ -97,6 +101,7 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定发布" preferredStyle:UIAlertControllerStyleAlert];
         //创建提示框的确认按钮
         UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self issueRequest];
             //返回上个页面
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -190,8 +195,7 @@
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    _pickerView.hidden = YES;
-    _toolBar.hidden = YES;
+    _maskView.hidden = YES;
 }
 
 - (IBAction)yesAction:(UIBarButtonItem *)sender {
@@ -202,15 +206,13 @@
     //将拿到的数据显示在按钮上面
     [_selectBtn setTitle:title forState:UIControlStateNormal];
     
-    _pickerView.hidden = YES;
-    _toolBar.hidden = YES;
+    _maskView.hidden = YES;
     
 }
 
 - (IBAction)selectAction:(UIButton *)sender forEvent:(UIEvent *)event {
     [self searchRequset];
-    _pickerView.hidden = NO;
-    _toolBar.hidden = NO;
+    _maskView.hidden = NO;
     [self initializeData];
     
 }
