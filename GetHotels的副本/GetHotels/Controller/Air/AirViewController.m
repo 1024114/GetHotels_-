@@ -46,9 +46,8 @@
     [self uiLayout];
     [self dataInitialize];
     [self segmentedControlset];
-    [self offerRequest];
-    [self staleRequest];
     [self createRefeshControll];
+    [self offerInitializeData];
     
     
     
@@ -109,11 +108,13 @@
 -(void)end{
     //停止刷新
     [_tag endRefreshing];
+    [_avi stopAnimating];
 }
 
 -(void)end2{
     //停止刷新
     [_tag2 endRefreshing];
+    [_avi stopAnimating];
 }
 
 -(void)offerInitializeData{
@@ -142,10 +143,6 @@
 }
 - (NSInteger)scrollCheck: (UIScrollView *)scrollView{
     NSInteger page = scrollView.contentOffset.x / (scrollView.frame.size.width);
-    if(offerFlag==1 && page==0){
-        offerFlag=0;
-        [self offerInitializeData];
-    }
     if(staleFlag==1 && page==1){
         staleFlag=0;
         [self staleInitializeData];
@@ -190,7 +187,7 @@
     self.segmentedControl4.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     self.segmentedControl4.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     self.segmentedControl4.tag = 3;
-    
+    //把self转换成弱指针
     __weak typeof(self) weakSelf = self;
     [self.segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
