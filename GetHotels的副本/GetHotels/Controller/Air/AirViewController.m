@@ -23,7 +23,7 @@
     NSInteger offerPageSize;
     NSInteger totalpage;
 }
-@property (nonatomic, strong) UIScrollView *scrollView;
+
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
 @property (weak, nonatomic) IBOutlet UITableView *offerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *staleTableView;
@@ -113,6 +113,44 @@
 -(void)end2{
     //停止刷新
     [_tag2 endRefreshing];
+}
+
+-(void)offerInitializeData{
+    _avi=[Utilities getCoverOnView:self.view];
+    [self offerRequest];
+    
+}
+-(void)staleInitializeData{
+    _avi=[Utilities getCoverOnView:self.view];
+    [self staleRequest];
+}
+
+
+#pragma mark -scrollView
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(scrollView==_scrollView){
+        NSInteger page = [self scrollCheck:scrollView];
+        [_segmentedControl4 setSelectedSegmentIndex:page animated:YES];
+    }
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    if (scrollView == _scrollView) {
+        [self scrollCheck:scrollView];
+    }
+}
+- (NSInteger)scrollCheck: (UIScrollView *)scrollView{
+    NSInteger page = scrollView.contentOffset.x / (scrollView.frame.size.width);
+    if(offerFlag==1 && page==0){
+        offerFlag=0;
+        [self offerInitializeData];
+    }
+    if(staleFlag==1 && page==1){
+        staleFlag=0;
+        [self staleInitializeData];
+    }
+    
+    return page;
 }
 
 
