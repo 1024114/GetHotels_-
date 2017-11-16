@@ -204,6 +204,20 @@
     return @"删除";
 }
 
+#pragma mark - Hiddenkeyboard
+//Return键是否能被点击 返回YES表示能点，返回NO表示不能被点
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //收起键盘
+    //[textField resignFirstResponder];
+    [self.view endEditing:YES];
+    return YES;
+}
+
+//点击键盘以外的部分收起键盘
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 /*
 #pragma mark - Navigation
 
