@@ -24,6 +24,7 @@
     NSInteger totalpage;
 }
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
 @property (weak, nonatomic) IBOutlet UITableView *offerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *staleTableView;

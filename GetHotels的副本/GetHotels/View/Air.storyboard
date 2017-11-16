@@ -309,6 +309,7 @@
                     <navigationItem key="navigationItem" id="lq9-94-874"/>
                     <connections>
                         <outlet property="offerTableView" destination="BDP-mw-XWi" id="8Er-uq-0tx"/>
+                        <outlet property="scrollView" destination="T6K-AX-gie" id="TGk-HB-Pbv"/>
                         <outlet property="staleTableView" destination="rDH-Yn-Xgq" id="RvO-pe-5Si"/>
                     </connections>
                 </viewController>
