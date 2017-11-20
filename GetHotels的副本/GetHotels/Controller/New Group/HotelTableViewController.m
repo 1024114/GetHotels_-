@@ -182,36 +182,15 @@
     
     HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
     HotelModel *hotelModel = _hotelarr[indexPath.row];
-    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:1];//去掉最左边的["
-    NSString *str2 = [str1 substringToIndex:str1.length - 1];//去掉最后的"]
-    NSArray *strArr = [str2 componentsSeparatedByString:@","];
-    NSLog(@"strArr = %@", strArr[0]);
-    NSRange  range = [str2 rangeOfString:@","];//定义一个特殊符号 ","
-    NSString *str3 = @"";
-    NSString *str4 = @"";
-    NSString *str5 = @"";
-    NSString *str6 = @"";
-    NSString *str7 = @"";
-    NSString *str8 = @"";
-    NSString *str9 = @"";
-    if (range.length != 0) {
-        str3 = [str2 substringToIndex:range.location];//截取到特殊符号为止
-        str4 = [str2 substringFromIndex:range.location];//从特殊符号开始截取
-        str5 = [str4 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
-        str6 = [str5 substringToIndex:range.location];//截取到特殊符号为止
-        str7 = [str6 substringToIndex:str6.length - 3];//截取最后的3位特殊符号
-        str8 = [str5 substringFromIndex:range.location];//从特殊符号开始截取
-        str9 = [str8 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
-    }
-    
-    NSString *str10 = [str9 substringFromIndex:str9.length - 2];
-    NSLog(@"str10 = %@",str10);
+    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:2];//去掉最左边的["
+    NSString *str2 = [str1 substringToIndex:str1.length - 2];//去掉最后的"]
+    NSArray *strArr = [str2 componentsSeparatedByString:@"\",\""];
 
     //设置细胞的值
 
     cell.nameLabel.text = hotelModel.hotelName;//酒店名称
-    cell.describeLabel.text = [NSString stringWithFormat:@"描述:%@ %@",str3,str7];//描述
-    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@㎡", str10];//面积
+    cell.describeLabel.text = [NSString stringWithFormat:@"描述:%@ %@",strArr[0],strArr[1]];//描述
+    cell.areaLabel.text = [NSString stringWithFormat:@"面积:%@", strArr[3]];//面积
     cell.priceLabel.text= [NSString stringWithFormat:@"价格: %ld¥",(long)hotelModel.hotelPrice];//价格
     //    //图片远程路径字符串转换为NSURL
     //    NSURL *url = [NSURL URLWithString:hotelModel.roomImage];
