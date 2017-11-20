@@ -13,7 +13,6 @@
 
 
 @interface AirViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
-    NSInteger offerFlag;
     NSInteger staleFlag;
     NSInteger offerPageNum;
     BOOL offerLast;
@@ -61,7 +60,6 @@
 
 -(void)dataInitialize{
     //初始可变化数组
-    offerFlag = 1;
     offerPageNum = 1;
     _offerArr = [NSMutableArray new];
     staleFlag = 1;
@@ -116,12 +114,13 @@
     [_tag2 endRefreshing];
     [_avi stopAnimating];
 }
-
+//滑动到可报价
 -(void)offerInitializeData{
     _avi=[Utilities getCoverOnView:self.view];
     [self offerRequest];
     
 }
+//滑动到已过期
 -(void)staleInitializeData{
     _avi=[Utilities getCoverOnView:self.view];
     [self staleRequest];
@@ -189,6 +188,7 @@
     self.segmentedControl4.tag = 3;
     //把self转换成弱指针
     __weak typeof(self) weakSelf = self;
+    //点击事件
     [self.segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
     }];
@@ -198,11 +198,11 @@
 }
 
 #pragma mark - Request
+//首页可报价
 -(void)offerRequest{
     NSDictionary *para=@{@"type":@1,@"pageNum":@(offerPageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [self end];
-        NSLog(@"responseObject=%@",responseObject);
         NSDictionary *result=responseObject[@"content"][@"Aviation_demand"];
         NSArray *list=result[@"list"];
         offerLast=[result[@"isLastPage"]boolValue];
@@ -217,10 +217,12 @@
         }
      failure:^(NSInteger statusCode, NSError *error) {
          [self end];
-        NSLog(@"失败");
+        //NSLog(@"失败");
     }];
 }
 
+
+//首页已过期
 -(void)staleRequest{
     NSDictionary *para=@{@"type":@0,@"pageNum":@(stalePageNum),@"pageSize":@10};
     [RequestAPI requestURL:@"/findAlldemandByType_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {

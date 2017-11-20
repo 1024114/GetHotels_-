@@ -75,12 +75,14 @@
 
 
 #pragma  mark - notification
+//出发地通知
 -(void)checkDepartCity:(NSNotification *)note{
     NSString *cityStr=note.object;
     if(![_startBtn.titleLabel.text isEqualToString:cityStr]){
         [_startBtn setTitle:cityStr forState:UIControlStateNormal];
     }
 }
+//目的地通知
 -(void)checkDestinationCity:(NSNotification *)note{
     NSString *cityStr=note.object;
     if(![_endBtn.titleLabel.text isEqualToString:cityStr]){
@@ -90,7 +92,7 @@
 
 //监听到选择城市的通知后做什么
 -(void)resetHome:(NSNotification *)notification{
-    NSLog(@"监听到了");
+    //NSLog(@"监听到了");
     //拿到通知所携带的参数
     NSString *city = notification.object;
         if (tagsCity) {
@@ -115,7 +117,6 @@
     
     NSDictionary *para=@{@"business_id":@2,@"aviation_demand_id":[[StorageMgr singletonStorageMgr]objectForKey:@"id"],@"final_price":@(price),@"weight":@(weight),@"aviation_company":airLines,@"aviation_cabin":aviationCabin,@"in_time_str":inTimeStr,@"out_time_str":outTimeStr,@"departure":departuRestr,@"destination":destinationStr,@"flight_no":flightNostr};
     [RequestAPI requestURL:@"/offer_edu" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
-        
         [_tableView reloadData];
     } failure:^(NSInteger statusCode, NSError *error) {}];
 }
@@ -131,7 +132,7 @@
         }
         [_tableView reloadData];
     } failure:^(NSInteger statusCode, NSError *error) {
-        NSLog(@"失败");
+        //NSLog(@"失败");
     }];
 }
 
@@ -139,7 +140,7 @@
 - (void)deleteRequest:(NSIndexPath *)indexPath {
     SelectOfferModel *seModel = _selectOfferArr[indexPath.row];
     NSDictionary *para = @{@"id":@(seModel.ID)};
-    [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    [RequestAPI requestURL:@"/deleteOfferById_edu" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
     } failure:^(NSInteger statusCode, NSError *error) {
     }];
 }
