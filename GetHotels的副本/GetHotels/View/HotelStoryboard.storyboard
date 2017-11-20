@@ -136,31 +136,45 @@
                                     <constraint firstAttribute="height" constant="1" id="iZn-Ua-G13"/>
                                 </constraints>
                             </view>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCv-nF-SQd">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="MP5-FK-zbj" id="sBX-Dp-5i6"/>
-                                    <outlet property="delegate" destination="MP5-FK-zbj" id="Yqp-4J-bMl"/>
-                                </connections>
-                            </pickerView>
-                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEy-PA-1B3">
-                                <rect key="frame" x="0.0" y="407" width="375" height="44"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <items>
-                                    <barButtonItem title="取消" id="ZeS-UH-CIy">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWg-5z-dyW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEy-PA-1B3">
+                                        <rect key="frame" x="0.0" y="407" width="375" height="44"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <items>
+                                            <barButtonItem title="取消" id="ZeS-UH-CIy">
+                                                <connections>
+                                                    <action selector="cancelAction:" destination="MP5-FK-zbj" id="5r8-p8-SVF"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="N9u-r6-6lQ"/>
+                                            <barButtonItem title="确定" id="aIm-WH-veK">
+                                                <connections>
+                                                    <action selector="yesAction:" destination="MP5-FK-zbj" id="61T-mT-qMJ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCv-nF-SQd">
+                                        <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="cancelAction:" destination="MP5-FK-zbj" id="5r8-p8-SVF"/>
+                                            <outlet property="dataSource" destination="MP5-FK-zbj" id="sBX-Dp-5i6"/>
+                                            <outlet property="delegate" destination="MP5-FK-zbj" id="Yqp-4J-bMl"/>
                                         </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="N9u-r6-6lQ"/>
-                                    <barButtonItem title="确定" id="aIm-WH-veK">
-                                        <connections>
-                                            <action selector="yesAction:" destination="MP5-FK-zbj" id="61T-mT-qMJ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UCv-nF-SQd" secondAttribute="trailing" id="6An-xw-gRn"/>
+                                    <constraint firstItem="UCv-nF-SQd" firstAttribute="top" secondItem="mEy-PA-1B3" secondAttribute="bottom" id="DpT-A7-jeL"/>
+                                    <constraint firstAttribute="trailing" secondItem="mEy-PA-1B3" secondAttribute="trailing" id="Izu-dA-FqT"/>
+                                    <constraint firstItem="UCv-nF-SQd" firstAttribute="leading" secondItem="rWg-5z-dyW" secondAttribute="leading" id="YBq-vB-S3l"/>
+                                    <constraint firstItem="mEy-PA-1B3" firstAttribute="leading" secondItem="rWg-5z-dyW" secondAttribute="leading" id="dDp-IH-x4i"/>
+                                    <constraint firstAttribute="bottom" secondItem="UCv-nF-SQd" secondAttribute="bottom" id="zY7-0n-pYg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -168,27 +182,27 @@
                             <constraint firstItem="Sy9-lU-S4M" firstAttribute="leading" secondItem="Q65-cu-d7S" secondAttribute="leading" id="4Sw-14-pZ7"/>
                             <constraint firstItem="E29-7H-XC5" firstAttribute="trailing" secondItem="tFC-EG-Qrw" secondAttribute="trailing" constant="200" id="6Mt-Kj-h4R"/>
                             <constraint firstItem="E29-7H-XC5" firstAttribute="trailing" secondItem="5bB-7s-g5G" secondAttribute="trailing" constant="15" id="6Xq-uC-W6i"/>
+                            <constraint firstItem="rWg-5z-dyW" firstAttribute="top" secondItem="caJ-SX-iI1" secondAttribute="top" id="8ca-lF-Dbc"/>
                             <constraint firstItem="ep5-zb-udo" firstAttribute="leading" secondItem="UVM-e2-p62" secondAttribute="leading" id="ACf-G1-74K"/>
                             <constraint firstItem="Dw8-M8-pGt" firstAttribute="top" secondItem="5Pu-xB-fde" secondAttribute="bottom" constant="5" id="ARJ-BJ-1p0"/>
                             <constraint firstItem="udq-Uw-k9P" firstAttribute="leading" secondItem="5Pu-xB-fde" secondAttribute="leading" id="Ats-Gq-YhG"/>
                             <constraint firstItem="UVM-e2-p62" firstAttribute="top" secondItem="rtY-6G-hrl" secondAttribute="bottom" constant="20" id="G9e-le-EGv"/>
-                            <constraint firstItem="UCv-nF-SQd" firstAttribute="top" secondItem="mEy-PA-1B3" secondAttribute="bottom" id="Ggi-wI-vyd"/>
-                            <constraint firstAttribute="bottom" secondItem="UCv-nF-SQd" secondAttribute="bottom" id="Gki-W1-qwc"/>
                             <constraint firstItem="tmO-eL-ss3" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" constant="15" id="HJa-cF-z7S"/>
                             <constraint firstItem="5Pu-xB-fde" firstAttribute="top" secondItem="Sy9-lU-S4M" secondAttribute="bottom" constant="15" id="ILf-gv-xHd"/>
-                            <constraint firstItem="mEy-PA-1B3" firstAttribute="trailing" secondItem="E29-7H-XC5" secondAttribute="trailing" id="K7E-JZ-ztJ"/>
                             <constraint firstItem="XKJ-Q1-Ly9" firstAttribute="top" secondItem="ENe-IW-gRN" secondAttribute="bottom" constant="5" id="LD9-nj-mIp"/>
                             <constraint firstItem="XKJ-Q1-Ly9" firstAttribute="leading" secondItem="ENe-IW-gRN" secondAttribute="leading" id="Pcr-1v-gCJ"/>
+                            <constraint firstItem="rWg-5z-dyW" firstAttribute="bottom" secondItem="E29-7H-XC5" secondAttribute="bottom" id="Qt5-kV-U2A"/>
                             <constraint firstItem="Q65-cu-d7S" firstAttribute="leading" secondItem="UVM-e2-p62" secondAttribute="leading" id="R0p-oe-tTl"/>
+                            <constraint firstItem="rWg-5z-dyW" firstAttribute="trailing" secondItem="E29-7H-XC5" secondAttribute="trailing" id="Una-Pf-iA0"/>
                             <constraint firstItem="cqR-sd-gnT" firstAttribute="trailing" secondItem="udq-Uw-k9P" secondAttribute="trailing" id="V6L-Ie-9NZ"/>
                             <constraint firstItem="Q65-cu-d7S" firstAttribute="trailing" secondItem="UVM-e2-p62" secondAttribute="trailing" id="VRX-R1-Jye"/>
+                            <constraint firstItem="rWg-5z-dyW" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" id="VUL-iW-ApI"/>
                             <constraint firstItem="MdZ-Av-baz" firstAttribute="leading" secondItem="UaD-99-yaj" secondAttribute="leading" id="VjF-gP-sOc"/>
                             <constraint firstItem="ep5-zb-udo" firstAttribute="trailing" secondItem="UVM-e2-p62" secondAttribute="trailing" id="WsR-AX-Sev"/>
                             <constraint firstItem="5Pu-xB-fde" firstAttribute="trailing" secondItem="Q65-cu-d7S" secondAttribute="trailing" id="XOd-6R-WsA"/>
                             <constraint firstItem="E29-7H-XC5" firstAttribute="trailing" secondItem="UVM-e2-p62" secondAttribute="trailing" constant="30" id="XXt-Sr-Acd"/>
                             <constraint firstItem="UVM-e2-p62" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" constant="30" id="Xzv-xo-cTe"/>
                             <constraint firstItem="MdZ-Av-baz" firstAttribute="trailing" secondItem="UaD-99-yaj" secondAttribute="trailing" id="Y05-Q3-PLG"/>
-                            <constraint firstItem="UCv-nF-SQd" firstAttribute="top" secondItem="mEy-PA-1B3" secondAttribute="bottom" id="ZGG-zy-e4W"/>
                             <constraint firstItem="cqR-sd-gnT" firstAttribute="leading" secondItem="udq-Uw-k9P" secondAttribute="leading" id="bI2-Z7-Rl1"/>
                             <constraint firstItem="udq-Uw-k9P" firstAttribute="trailing" secondItem="5Pu-xB-fde" secondAttribute="trailing" id="bjl-bn-HUQ"/>
                             <constraint firstItem="Sy9-lU-S4M" firstAttribute="top" secondItem="Q65-cu-d7S" secondAttribute="bottom" constant="5" id="cAT-am-DuH"/>
@@ -202,12 +216,9 @@
                             <constraint firstItem="5bB-7s-g5G" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" constant="15" id="mcx-hq-gFP"/>
                             <constraint firstItem="tmO-eL-ss3" firstAttribute="top" secondItem="E29-7H-XC5" secondAttribute="top" constant="25" id="pGq-n8-Nm8"/>
                             <constraint firstItem="MdZ-Av-baz" firstAttribute="top" secondItem="UaD-99-yaj" secondAttribute="bottom" constant="5" id="qv4-zH-WJb"/>
-                            <constraint firstItem="mEy-PA-1B3" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" id="qwj-uq-272"/>
-                            <constraint firstItem="UCv-nF-SQd" firstAttribute="leading" secondItem="E29-7H-XC5" secondAttribute="leading" id="skg-Eh-cKZ"/>
                             <constraint firstItem="XKJ-Q1-Ly9" firstAttribute="trailing" secondItem="ENe-IW-gRN" secondAttribute="trailing" id="tPw-GY-oO9"/>
                             <constraint firstItem="cqR-sd-gnT" firstAttribute="top" secondItem="udq-Uw-k9P" secondAttribute="bottom" constant="5" id="tns-8P-Ne4"/>
                             <constraint firstItem="5Pu-xB-fde" firstAttribute="leading" secondItem="Q65-cu-d7S" secondAttribute="leading" id="ul0-kK-ijz"/>
-                            <constraint firstItem="UCv-nF-SQd" firstAttribute="trailing" secondItem="E29-7H-XC5" secondAttribute="trailing" id="ulN-xf-Rhf"/>
                             <constraint firstItem="tFC-EG-Qrw" firstAttribute="top" secondItem="ep5-zb-udo" secondAttribute="bottom" constant="20" id="v9t-3X-nJt"/>
                             <constraint firstItem="udq-Uw-k9P" firstAttribute="top" secondItem="Dw8-M8-pGt" secondAttribute="bottom" constant="15" id="vdy-ur-0Y4"/>
                             <constraint firstItem="ep5-zb-udo" firstAttribute="top" secondItem="UVM-e2-p62" secondAttribute="bottom" constant="2" id="vi3-tl-qqX"/>
@@ -224,6 +235,7 @@
                     <connections>
                         <outlet property="areaTextField" destination="udq-Uw-k9P" id="Vqi-rz-yfS"/>
                         <outlet property="bedTextField" destination="5Pu-xB-fde" id="HJE-KU-c71"/>
+                        <outlet property="maskView" destination="rWg-5z-dyW" id="76Z-KS-z7q"/>
                         <outlet property="moringTextField" destination="Q65-cu-d7S" id="JB6-7v-Ufz"/>
                         <outlet property="pickerView" destination="UCv-nF-SQd" id="TYe-DJ-fTU"/>
                         <outlet property="priceTextField" destination="ENe-IW-gRN" id="WVC-XQ-XeB"/>

@@ -17,9 +17,9 @@
 }
 - (IBAction)postedBtn:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
+@property (strong, nonatomic) UIRefreshControl *tag;
 
 //声明一个可变数组array
-@property (strong, nonatomic) NSMutableArray *array;
 @property (strong, nonatomic) NSMutableArray *hotelarr;
 
 @end
@@ -38,6 +38,7 @@
     [self tableView];
     [self request];
     [self dataInitialize];
+    [self uiLayout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,10 +49,11 @@
 
 -(void)dataInitialize{
     //初始可变化数组
-    _array = [NSMutableArray new];
     hotelPageNum=1;
     _hotelarr=[NSMutableArray new];
 }
+
+
 
 //设置导航栏的方法
 - (void)navigationConfiguration{
@@ -94,7 +96,7 @@
             for(NSDictionary *dict in list){
                 //将遍历得来的字典转换成model
                 HotelModel *hotelModel=[[HotelModel alloc]initWithDict:dict];
-                NSLog(@"hotelName = %@", hotelModel.hotelName);
+//                NSLog(@"hotelName = %@", hotelModel.hotelName);
                 //将上述model放入可变数组中
                 [_hotelarr addObject:hotelModel];
                 //让tableView重载数据
@@ -112,8 +114,8 @@
 
 //删除
 -(void)deleteRequest:(NSIndexPath *)indexPath{
-    HotelModel *hotModel = _array[indexPath.row];
-    NSDictionary *para=@{@"id":@(hotModel.hotelID)};
+    HotelModel *hotelModel = _hotelarr[indexPath.row];
+    NSDictionary *para = @{@"id":@(hotelModel.hotelID)};
     //网络请求
     [RequestAPI requestURL:@"/deleteHotel" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         NSLog(@"删除成功 = %@", responseObject);
@@ -123,25 +125,17 @@
 }
 
 #pragma mark - Table view data source(关于细胞)
-
-//多少组
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return _hotelarr.count;
-}
-
-
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 1;
+    return _hotelarr.count;
 }
 
 //每行长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
     
-    HotelModel *hotelModel = _hotelarr[indexPath.section];
+    HotelModel *hotelModel = _hotelarr[indexPath.row];
     NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:2];//去掉最左边的["
     NSString *str2 = [str1 substringToIndex:str1.length - 2];//去掉最后的"]
     NSRange range = [str2 rangeOfString:@"\",\""];//定义一个特殊符号 ","
