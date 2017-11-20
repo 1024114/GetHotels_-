@@ -102,6 +102,7 @@
         //创建提示框的确认按钮
         UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self issueRequest];
+
             //返回上个页面
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -115,6 +116,7 @@
         
         //将提示框显示出来
         [self presentViewController:alert animated:YES completion:nil];
+        
     }
 }
 
@@ -134,11 +136,18 @@
 
 //发布 的网络请求
 - (void)issueRequest{
+    NSString *roomName = _roomNameTextField.text;//房间名称
+    NSString *moring = _moringTextField.text;//含早
+    NSString *type = _bedTextField.text;//床型
+    NSString *area = _areaTextField.text;//面积
+    NSString *roomtype = [NSString stringWithFormat:@"%@,%@,%@,%@",roomName,moring,type,area];
+    
     NSInteger row = [_pickerView selectedRowInComponent:0];
     NSString *title= _hotelNamePickerArr[row];
     [_selectBtn setTitle:title forState:UIControlStateNormal];
     _imgUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505461689&di=9c9704fab9db8eccb77e1e1360fdbef4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.redocn.com%2Ftupian%2F20150312%2Fhaixinghezhenzhubeikeshiliangbeijing_3937174.jpg";
-    NSDictionary *para =@{@"business_id":@2,@"hotel_name":title ,@"hotel_type":_areaTextField.text,@"room_imgs":_imgUrl,@"price":_priceTextField.text};
+    
+    NSDictionary *para =@{@"business_id":@1,@"hotel_name":title, @"hotel_type":roomtype, @"room_imgs":_imgUrl,@"price":_priceTextField.text};
 
     [RequestAPI requestURL:@"/addHotel" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
         if ([responseObject[@"result"]integerValue] == 1){
@@ -148,7 +157,6 @@
     } failure:^(NSInteger statusCode, NSError *error) {
         NSLog(@"%ld", (long)statusCode);
     }];
-
 }
 
 //获取酒店名称列表
@@ -214,6 +222,7 @@
     [self searchRequset];
     _maskView.hidden = NO;
     [self initializeData];
+    [self.view endEditing:YES];
     
 }
 
