@@ -127,7 +127,7 @@
 
 #pragma mark - Request
 -(void)request{
-    NSDictionary *para=@{@"business_id":@1};
+    NSDictionary *para=@{@"business_id":@2};
     //网络请求
     [RequestAPI requestURL:@"/findHotelBySelf" withParameters:para andHeader:nil byMethod:kPost andSerializer:kForm success:^(id responseObject) {
         [self end];
@@ -182,17 +182,30 @@
     
     HotelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"room" forIndexPath:indexPath];
     HotelModel *hotelModel = _hotelarr[indexPath.row];
-    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:2];//去掉最左边的["
-    NSString *str2 = [str1 substringToIndex:str1.length - 2];//去掉最后的"]
+    NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:1];//去掉最左边的["
+    NSString *str2 = [str1 substringToIndex:str1.length - 1];//去掉最后的"]
+    NSArray *strArr = [str2 componentsSeparatedByString:@","];
+    NSLog(@"strArr = %@", strArr[0]);
     NSRange  range = [str2 rangeOfString:@","];//定义一个特殊符号 ","
-    NSString *str3 = [str2 substringToIndex:range.location];//截取到特殊符号为止
-    NSString *str4 = [str2 substringFromIndex:range.location];//从特殊符号开始截取
-    NSString *str5 = [str4 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
-    NSString *str6 = [str5 substringToIndex:range.location];//截取到特殊符号为止
-    NSString *str7 = [str6 substringToIndex:str6.length - 3];//截取最后的3位特殊符号
-    NSString *str8 = [str5 substringFromIndex:range.location];//从特殊符号开始截取
-    NSString *str9 = [str8 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
+    NSString *str3 = @"";
+    NSString *str4 = @"";
+    NSString *str5 = @"";
+    NSString *str6 = @"";
+    NSString *str7 = @"";
+    NSString *str8 = @"";
+    NSString *str9 = @"";
+    if (range.length != 0) {
+        str3 = [str2 substringToIndex:range.location];//截取到特殊符号为止
+        str4 = [str2 substringFromIndex:range.location];//从特殊符号开始截取
+        str5 = [str4 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
+        str6 = [str5 substringToIndex:range.location];//截取到特殊符号为止
+        str7 = [str6 substringToIndex:str6.length - 3];//截取最后的3位特殊符号
+        str8 = [str5 substringFromIndex:range.location];//从特殊符号开始截取
+        str9 = [str8 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
+    }
+    
     NSString *str10 = [str9 substringFromIndex:str9.length - 2];
+    NSLog(@"str10 = %@",str10);
 
     //设置细胞的值
 
