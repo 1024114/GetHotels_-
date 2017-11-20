@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462343ACFDC11C48E3C6758E /* libPods-GetHotels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B313A27904D6E2E7CCAA0F /* libPods-GetHotels.a */; };
 		8415B0481FB036250081B393 /* HotelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8415B0471FB036250081B393 /* HotelStoryboard.storyboard */; };
 		8415B04C1FB037450081B393 /* HotelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B04B1FB037450081B393 /* HotelTableViewController.m */; };
 		8415B0521FB037A20081B393 /* PostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8415B0511FB037A20081B393 /* PostedViewController.m */; };
@@ -192,6 +193,7 @@
 		B2E48AC21FAFFA8300725555 /* GBAlipayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBAlipayManager.m; sourceTree = "<group>"; };
 		B2E48AD01FAFFB1600725555 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B2E48AD21FAFFB2000725555 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E7B313A27904D6E2E7CCAA0F /* libPods-GetHotels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GetHotels.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 				B2E48A8D1FAFF98500725555 /* libc++.tbd in Frameworks */,
 				B2E48A8C1FAFF97D00725555 /* libz.tbd in Frameworks */,
 				B2E48A831FAFF87100725555 /* Openssl.framework in Frameworks */,
+				462343ACFDC11C48E3C6758E /* libPods-GetHotels.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +318,7 @@
 				B26D93771FA84A5D008F6715 /* CoreGraphics.framework */,
 				B26D93751FA84A50008F6715 /* Foundation.framework */,
 				B26D93731FA8461F008F6715 /* RKSwipeBetweenViewControllers.podspec */,
+				E7B313A27904D6E2E7CCAA0F /* libPods-GetHotels.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -184,7 +184,7 @@
     HotelModel *hotelModel = _hotelarr[indexPath.row];
     NSString *str1 = [hotelModel.hotelDescribe substringFromIndex:2];//去掉最左边的["
     NSString *str2 = [str1 substringToIndex:str1.length - 2];//去掉最后的"]
-    NSRange  range = [str2 rangeOfString:@"\",\""];//定义一个特殊符号 ","
+    NSRange  range = [str2 rangeOfString:@","];//定义一个特殊符号 ","
     NSString *str3 = [str2 substringToIndex:range.location];//截取到特殊符号为止
     NSString *str4 = [str2 substringFromIndex:range.location];//从特殊符号开始截取
     NSString *str5 = [str4 substringFromIndex:range.length];//截取上一行的数据 - 特殊符号
